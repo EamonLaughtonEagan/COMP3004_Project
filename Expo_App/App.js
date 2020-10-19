@@ -15,18 +15,25 @@ import {
 
 
 class HomeScreen extends React.Component {
-  state = {
-    counter: 0,
+  constructor(props) {
+    super(props)
+    this.state = {
+      counter: 0,
+      show: true
+    };
+  }
+
+  IncrementItem = () => {
+    this.setState({counter: this.state.counter + 1});
+    console.log("Image tapped");
   }
 
   render () {
-    const counter = this.state.counter;
-
     return (
       
       <View style = {styles.container}>
-        <Text style = {styles.countText}> Times tapped: {counter} </Text>
-        <TouchableHighlight onPress = {() => console.log("Image tapped")}>
+        <Text style = {styles.countText}> Times Tapped: {this.state.counter} </Text>
+        <TouchableHighlight onPress = {this.IncrementItem}>
           <Image 
             fadeDuration = {2000}
             source = {{
@@ -36,17 +43,8 @@ class HomeScreen extends React.Component {
           />
         </TouchableHighlight>
       </View>
-
-      
-    )
+    );
   }
-
-  onIncrement = () => {
-    this.setState({
-      counter: this.state.counter + 1,
-    })
-  }
-
 }
 
 
@@ -64,8 +62,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   countText: {
-    fontSize: 25,
+    fontSize: 50,
     padding: 10,
-    color: '#000000'
+    color: '#FF00FF'
   }
 });
