@@ -1,4 +1,3 @@
-.expo/*
 npm-debug.*
 *.jks
 *.p8
@@ -9,7 +8,6 @@ npm-debug.*
 web-build/
 
 Prototype/node_modules/*
-Prototype/.expo-shared/*
 
 # macOS
 .DS_Store
