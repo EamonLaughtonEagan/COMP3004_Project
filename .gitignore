@@ -6,6 +6,8 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+./idea/*
+
 Prototype/node_modules*
 Prototype/.expo/*
 
