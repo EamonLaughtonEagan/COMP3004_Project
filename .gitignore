@@ -7,7 +7,5 @@ npm-debug.*
 *.orig.*
 web-build/
 
-Prototype/node_modules/*
-
 # macOS
 .DS_Store
