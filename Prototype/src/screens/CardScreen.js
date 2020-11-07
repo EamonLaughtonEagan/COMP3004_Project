@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet} from "react-native";
+import { StyleSheet, Image } from "react-native";
 import {
     Container,
     Content,
@@ -11,7 +11,6 @@ import {
     Thumbnail,
     Left,
     Body,
-    Image,
     Right
 } from "native-base";
 
