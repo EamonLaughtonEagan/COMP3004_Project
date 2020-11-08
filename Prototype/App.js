@@ -15,9 +15,9 @@ import {Ionicons} from '@expo/vector-icons';
 
 import {Container, Content, ListItem} from 'native-base';
 
-import NHCardImage from "./src/components/CardScreen";
 import AppFooter from "./src/components/AppFooter";
 import AppHeader from "./src/components/AppHeader";
+import AppCard from "./src/components/AppCard";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -46,12 +46,12 @@ export default class App extends React.Component {
                 <AppHeader title="November 7"/>
                 <Content padder>
                     <ListItem itemDivider>
-                        <NHCardImage/>
+                        <AppCard/>
                     </ListItem>
-                    <NHCardImage/>
-                    <NHCardImage/>
+                    <AppCard/>
+                    <AppCard/>
 
-                    <NHCardImage/>
+                    <AppCard/>
                 </Content>
 
                 <AppFooter/>
