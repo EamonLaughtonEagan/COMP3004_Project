@@ -1,36 +1,33 @@
-import {
-    Container,
-    Content,
-    Icon,
-    Text,
-    Left,
-    Body,
-    Right,
-    List,
-    ListItem,
-} from "native-base";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
+
+import Screen from "../components/AppScreen";
+import JobCard from "../components/JobCard";
 
 const cardImage = require("../assets/chair.jpg");
 const logo = require("../assets/logo.png");
 
 const datas = [
     {
+        id: 1,
         title: "Pool cleaning",
         subtitle: "In 30m",
-        description: "Pool cleaning & balance",
+        description:
+            "Vacuum floor, brush scumline, and skim leaves.\nRecord levels and balance water.",
         address: "82 Carrot Ln.",
         time: "9:30AM",
     },
     {
-        title: "Warranty Pump Replacement",
+        id: 2,
+        title: "Pump Replacement",
         subtitle: "In 2h",
-        description: "Bring the old pump back",
+        description:
+            "Replace existing Hayward Super II with Pentair SuperFlo VS. Customer has qualified for a rebate, so take pictures and bring the old pump back",
         address: "95 Banana Cr.",
         time: "11:00AM",
     },
     {
+        id: 3,
         title: "Leak Detection",
         subtitle: "In 2h30m",
         description: "Pressure test & acoustic listening",
@@ -38,23 +35,29 @@ const datas = [
         time: "11:30AM",
     },
     {
+        id: 4,
         title: "Bulk Salt Pickup",
         subtitle: "In 4h30m",
-        description: "P.O: FN720031",
+        description:
+            "Order from Costco will be ready by 1:00PM\nGo to the back and ask for Purchase Order FN720031",
         address: "4315 Strandherd Dr",
         time: "1:30PM",
     },
     {
+        id: 5,
         title: "Gold Pool Opening",
         subtitle: "In 5h30m",
-        description: "Chemical opening kit requested",
+        description:
+            "Standard gold opening + tarp and water bags. Customer requested a chemical opening kit",
         address: "12 Badger Crt.",
         time: "2:30PM",
     },
     {
+        id: 6,
         title: "Sand Filter Change",
         subtitle: "In 7h30m",
-        description: "Hayward SPX450 -250lbs filter sand",
+        description:
+            "Bring 250lbs filter sand\nReplace the laterals\nCustomer requested water balance\nline4",
         address: "772 Midnight Rd.",
         time: "4:30PM",
     },
@@ -62,73 +65,36 @@ const datas = [
 
 function JobScreen({ navigation }) {
     return (
-        <Container style={styles.container}>
-            <Content padder scrollEnabled>
-                <List>
-                    {datas.map((data, i) => (
-                        <ListItem avatar>
-                            <Left>
-                                <Icon name="map" />
-                            </Left>
-                            <Body>
-                                <Text>{data.title}</Text>
-                                <Text note> {data.subtitle}</Text>
-                            </Body>
-                            <Right>
-                                <Text style={styles.time}>{data.time}</Text>
-                            </Right>
-                        </ListItem>
-                    ))}
-                </List>
-            </Content>
-        </Container>
+        <Screen style={styles.screen}>
+            <FlatList
+                data={datas}
+                keyExtractor={(listing) => listing.id.toString()}
+                renderItem={({ item }) => (
+                    <JobCard
+                        title={item.title}
+                        subTitle={item.subtitle}
+                        description={item.description}
+                        address={item.address}
+                        time={item.time}
+                        onPress={() => navigation.navigate("(TODO)", item)}
+                    />
+                )}
+            />
+        </Screen>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "#FFF",
+    screen: {
+        paddingHorizontal: 10,
+        paddingVertical: 20,
+        backgroundColor: "white",
     },
-    mb: {
-        marginBottom: 15,
-    },
-    time: {
-        fontSize: 15,
+    background: {
+        flex: 1,
+        justifyContent: "flex-end",
+        alignItems: "center",
     },
 });
-
-// const listings = [
-//     {
-//         id: 1,
-//         title: "Red jacket for sale",
-//         price: 100,
-//         image: require("../assets/jacket.jpg"),
-//     },
-//     {
-//         id: 2,
-//         title: "Couch in great condition",
-//         price: 1000,
-//         image: require("../assets/couch.jpg"),
-//     },
-// ];
-//
-// function ListingsScreen({ navigation }) {
-//     return (
-//         <Screen style={styles.screen}>
-//             <FlatList
-//                 data={listings}
-//                 keyExtractor={(listing) => listing.id.toString()}
-//                 renderItem={({ item }) => (
-//                     <Card
-//                         title={item.title}
-//                         subTitle={"$" + item.price}
-//                         image={item.image}
-//                         onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
-//                     />
-//                 )}
-//             />
-//         </Screen>
-//     );
-// }
 
 export default JobScreen;
