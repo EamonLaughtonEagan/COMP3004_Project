@@ -1,32 +1,26 @@
-import { Ionicons } from "@expo/vector-icons";
-import { AppLoading } from "expo";
+import "react-native-gesture-handler";
+import NavigationContainer from "@react-navigation/native/src/NavigationContainer";
+import { createStackNavigator } from "@react-navigation/stack";
 import * as Font from "expo-font";
 import React from "react";
 
+import routes from "./src/navigation/routes";
 import JobScreen from "./src/screens/JobScreen";
+import LoginScreen from "./src/screens/LoginScreen";
 
-export default class App extends React.Component {
-    constructor({ props }) {
-        super(props);
-        this.state = {
-            isReady: false,
-        };
-    }
+const Stack = createStackNavigator();
 
-    async componentDidMount() {
-        await Font.loadAsync({
-            Roboto: require("native-base/Fonts/Roboto.ttf"),
-            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-            ...Ionicons.font,
-        });
-        this.setState({ isReady: true });
-    }
-
-    render() {
-        if (this.state.isReady) {
-            return <JobScreen />;
-        } else {
-            return <AppLoading />;
-        }
-    }
+export default function App() {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen
+                    name={routes.LOGIN}
+                    component={LoginScreen}
+                    options={{ title: "Login" }}
+                />
+                <Stack.Screen name={routes.JOBS} component={JobScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
