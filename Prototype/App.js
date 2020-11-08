@@ -15,7 +15,7 @@ import {Ionicons} from '@expo/vector-icons';
 
 import {Container, Content, ListItem} from 'native-base';
 
-import NHCardImage from "./src/screens/CardScreen";
+import NHCardImage from "./src/components/CardScreen";
 import AppFooter from "./src/components/AppFooter";
 import AppHeader from "./src/components/AppHeader";
 
