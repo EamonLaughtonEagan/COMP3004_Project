@@ -1,8 +1,6 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
-import { View, StyleSheet } from "react-native";
-
-import Text from "./AppText";
+import { View, StyleSheet, Text } from "react-native";
 
 function JobCard({ title, subTitle, description, address, time }) {
     return (

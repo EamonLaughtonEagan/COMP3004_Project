@@ -28,9 +28,10 @@ const datas = [
     },
     {
         id: 3,
-        title: "Leak Detection",
+        title: "Plumbing Leak Fix",
         subtitle: "In 2h30m",
-        description: "Pressure test & acoustic listening",
+        description:
+            "Bucket test confirms there is a plumbing leak. Locate and repair it, and record time spent.",
         address: "912 Apple Dr.",
         time: "11:30AM",
     },
@@ -63,7 +64,7 @@ const datas = [
     },
 ];
 
-function JobScreen({ navigation }) {
+function JobListScreen({ navigation }) {
     return (
         <Screen style={styles.screen}>
             <FlatList
@@ -76,7 +77,7 @@ function JobScreen({ navigation }) {
                         description={item.description}
                         address={item.address}
                         time={item.time}
-                        onPress={() => navigation.navigate("(TODO)", item)}
+                        onPress={() => navigation.navigate("JobCard", item)}
                     />
                 )}
             />
@@ -97,4 +98,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default JobScreen;
+export default JobListScreen;
