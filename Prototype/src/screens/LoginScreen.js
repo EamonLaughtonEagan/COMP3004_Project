@@ -1,24 +1,50 @@
-import { StyleSheet, View } from "native-base";
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { StyleSheet, Image } from "react-native";
 
 import AppButton from "../components/AppButton";
-import colors from "../config/colors";
+import Screen from "../components/AppScreen";
+import AppTextInput from "../components/AppTextInput";
+import routes from "../navigation/routes";
 
-export default class FormExample extends Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <AppButton title="Login" color="primary" />
-                <AppButton title="Register" color="secondary" />
-            </View>
-        );
-    }
+function LoginScreen({ navigation }) {
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+    return (
+        <Screen>
+            <Image style={styles.logo} source={require("../assets/gear.png")} />
+            <AppTextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                icon="email"
+                keyboardType="email-address"
+                onChangeText={(text) => setEmail(text)}
+                placeholder="Email"
+            />
+            <AppTextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                icon="lock"
+                onChangeText={(text) => setPassword(text)}
+                placeholdrer="Password"
+                secureTextEntry
+            />
+            <AppButton
+                title="Login"
+                onPress={() => navigation.navigate(routes.JOBS)}
+            />
+        </Screen>
+    );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+    logo: {
+        width: 80,
+        height: 80,
+        alignSelf: "center",
+        marginTop: 70,
+        marginBottom: 20,
     },
 });
+
+export default LoginScreen;
