@@ -1,24 +1,19 @@
-import React from 'react';
-import {Image, View, StyleSheet} from "react-native";
+import React from "react";
+import { Image, View, StyleSheet } from "react-native";
 
 import colors from "../config/colors";
 
 function ViewImageScreen() {
     return (
-
         <View style={styles.container}>
-
-            <View style={styles.closeIcon}/>
-            <View style={styles.deleteIcon}/>
+            <View style={styles.closeIcon} />
+            <View style={styles.deleteIcon} />
             <Image
                 resizeMode="contain"
                 style={styles.image}
                 source={require("../assets/chair.jpg")}
             />
-
         </View>
-
-
     );
 }
 
@@ -33,7 +28,7 @@ const styles = StyleSheet.create({
     },
     container: {
         backgroundColor: colors.black,
-        flex: 1
+        flex: 1,
     },
     deleteIcon: {
         width: 50,
@@ -48,6 +43,5 @@ const styles = StyleSheet.create({
         height: "100%",
     },
 });
-
 
 export default ViewImageScreen;

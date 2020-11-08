@@ -1,17 +1,10 @@
-import React from 'react';
-
-import {StyleSheet, View} from 'react-native';
+import React from "react";
+import { StyleSheet, View } from "react-native";
 
 const TechnicianHome = () => {
-    return (
-        <View>
-
-        </View>
-    );
+    return <View />;
 };
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});
 
 export default TechnicianHome;
