@@ -3,7 +3,7 @@ import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import React from "react";
 
-import JobScreen from "./src/components/AppJob";
+import JobScreen from "./src/screens/JobScreen";
 
 export default class App extends React.Component {
     constructor({ props }) {
