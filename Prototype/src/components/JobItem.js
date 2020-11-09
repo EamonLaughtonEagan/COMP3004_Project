@@ -1,30 +1,52 @@
-import { FontAwesome5 } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 
-function JobItem({ title, subTitle, description, address, time, onPress }) {
+import colors from "../config/colors";
+
+function JobItem({ title, subtitle, description, address, time, onPress }) {
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.container}>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.title} numberOfLines={1}>
-                        {title}
+                    <View style={{ flexDirection: "row" }}>
+                        <MaterialCommunityIcons
+                            name="clock-outline"
+                            size={24}
+                            color={colors.secondary}
+                            style={{
+                                flexDirection: "column",
+                                alignSelf: "center",
+                                margin: 5,
+                            }}
+                        />
+                        <Text style={styles.time}>{time}</Text>
+                    </View>
+                    <Text style={styles.subtitle} numberOfLines={1}>
+                        {subtitle}
                     </Text>
-                    <Text style={styles.time}>{time}</Text>
                 </View>
-                <View style={styles.detailsContainer}>
-                    <Text style={styles.details} numberOfLines={3}>
-                        {description}
-                    </Text>
-                </View>
+                <Text style={styles.title} numberOfLines={2}>
+                    {title}
+                </Text>
+                <Text style={styles.details} numberOfLines={3}>
+                    {description}
+                </Text>
+
                 <View style={styles.footer}>
-                    <FontAwesome5
-                        name="map-marker-alt"
-                        size={24}
-                        color="dodgerblue"
-                    />
-                    <Text style={styles.address}>{address}</Text>
-                    <Text style={styles.subTitle}>{subTitle}</Text>
+                    <View style={{ flexDirection: "row" }}>
+                        <MaterialCommunityIcons
+                            name="map-marker-radius"
+                            size={24}
+                            color="dodgerblue"
+                        />
+                        <Text style={styles.address}>{address}</Text>
+                        <MaterialCommunityIcons
+                            name="arrow-top-right-thick"
+                            size={12}
+                            color="grey"
+                        />
+                    </View>
                 </View>
             </View>
         </TouchableWithoutFeedback>
@@ -37,27 +59,23 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textDecorationLine: "underline",
         fontSize: 20,
-        marginHorizontal: 5,
+        marginLeft: 5,
     },
     container: {
-        marginBottom: 20,
         overflow: "hidden",
         justifyContent: "space-between",
-        borderColor: "dodgerblue",
-        borderWidth: 1,
-        borderRadius: 5,
-        paddingVertical: 20,
+        borderColor: colors.softGray,
+        borderTopWidth: 1,
+        paddingBottom: 20,
         paddingHorizontal: 15,
     },
     details: {
         fontSize: 20,
-    },
-    detailsContainer: {
-        margin: 10,
+        marginLeft: 15,
     },
     footer: {
+        marginTop: 20,
         padding: 5,
-        borderTopWidth: 1,
         flexDirection: "row",
         justifyContent: "space-between",
     },
@@ -65,17 +83,23 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 200,
     },
-    subTitle: {
+    subtitle: {
+        alignSelf: "flex-end",
+        textAlignVertical: "bottom",
         textAlign: "right",
         fontSize: 15,
-        flex: 1,
         color: "black",
     },
     time: {
-        fontSize: 18,
+        fontSize: 25,
+        textAlign: "left",
+        textAlignVertical: "center",
+        marginVertical: 10,
     },
     title: {
-        fontSize: 25,
+        marginLeft: 5,
+        flex: 3,
+        fontSize: 20,
         fontWeight: "bold",
     },
     titleContainer: {
