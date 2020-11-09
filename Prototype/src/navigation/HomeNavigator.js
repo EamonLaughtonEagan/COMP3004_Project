@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
 import AccountScreen from "../screens/AccountScreen";
+import AccountNavigator from "./AccountNavigator";
 import JobListNavigator from "./JobListNavigator";
 import routes from "./routes";
 
@@ -22,13 +23,16 @@ const HomeNavigator = () => (
             component={JobListNavigator}
             options={{
                 tabBarIcon: ({ size }) => (
-                    <MaterialCommunityIcons name="atom" size={size} />
+                    <MaterialCommunityIcons
+                        name="format-list-bulleted-square"
+                        size={size}
+                    />
                 ),
             }}
         />
         <Tab.Screen
-            name="Account"
-            component={AccountScreen}
+            name={routes.ACCOUNT}
+            component={AccountNavigator}
             options={{
                 tabBarIcon: ({ size }) => (
                     <MaterialCommunityIcons name="account" size={size} />
