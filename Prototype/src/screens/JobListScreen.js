@@ -2,23 +2,23 @@ import React from "react";
 import { FlatList, StyleSheet } from "react-native";
 
 import Screen from "../components/AppScreen";
-import JobCard from "../components/JobCard";
-
-const cardImage = require("../assets/chair.jpg");
-const logo = require("../assets/logo.png");
+import JobItem from "../components/JobItem";
+import routes from "../navigation/routes";
 
 const datas = [
     {
         id: 1,
+        customer: "Stanley Summers",
         title: "Pool cleaning",
         subtitle: "In 30m",
         description:
-            "Vacuum floor, brush scumline, and skim leaves.\nRecord levels and balance water.",
+            "Vacuum floor, brush scumline, and skim leaves.\nRecord levels and balance water. ",
         address: "82 Carrot Ln.",
         time: "9:30AM",
     },
     {
         id: 2,
+        customer: "Olivia Pope",
         title: "Pump Replacement",
         subtitle: "In 2h",
         description:
@@ -28,24 +28,27 @@ const datas = [
     },
     {
         id: 3,
+        customer: "Lydia Brown",
         title: "Plumbing Leak Fix",
         subtitle: "In 2h30m",
         description:
-            "Bucket test confirms there is a plumbing leak. Locate and repair it, and record time spent.",
+            "Lydia did a bucket test and we know there is a leak in the plumbing somewhere.\nPressure test to find out which line the leak is in, then locate it with the acoustic listening device. Record the time spent in the app!",
         address: "912 Apple Dr.",
         time: "11:30AM",
     },
     {
         id: 4,
+        customer: "Costco Wholesale",
         title: "Bulk Salt Pickup",
         subtitle: "In 4h30m",
         description:
-            "Order from Costco will be ready by 1:00PM\nGo to the back and ask for Purchase Order FN720031",
+            "Two skids of salt have been ordered and will be ready by 1:00PM\nGo to the loading bay office and ask for Purchase Order FN720031",
         address: "4315 Strandherd Dr",
         time: "1:30PM",
     },
     {
         id: 5,
+        customer: "Patrick Romley",
         title: "Gold Pool Opening",
         subtitle: "In 5h30m",
         description:
@@ -55,6 +58,7 @@ const datas = [
     },
     {
         id: 6,
+        customer: "Meredith Grey",
         title: "Sand Filter Change",
         subtitle: "In 7h30m",
         description:
@@ -71,13 +75,13 @@ function JobListScreen({ navigation }) {
                 data={datas}
                 keyExtractor={(listing) => listing.id.toString()}
                 renderItem={({ item }) => (
-                    <JobCard
+                    <JobItem
                         title={item.title}
                         subTitle={item.subtitle}
                         description={item.description}
                         address={item.address}
                         time={item.time}
-                        onPress={() => navigation.navigate("JobCard", item)}
+                        onPress={() => navigation.navigate(routes.JOB, item)}
                     />
                 )}
             />
@@ -88,7 +92,7 @@ function JobListScreen({ navigation }) {
 const styles = StyleSheet.create({
     screen: {
         paddingHorizontal: 10,
-        paddingVertical: 20,
+        paddingTop: 20,
         backgroundColor: "white",
     },
     background: {

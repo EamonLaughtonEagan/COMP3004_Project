@@ -31,7 +31,7 @@ function LoginScreen({ navigation }) {
             />
             <AppButton
                 title="Login"
-                onPress={() => navigation.navigate(routes.JOBS)}
+                onPress={() => navigation.navigate(routes.JOB_LIST)}
             />
         </Screen>
     );
