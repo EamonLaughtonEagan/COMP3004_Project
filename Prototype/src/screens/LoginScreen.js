@@ -1,9 +1,12 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Keyboard, Text } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 import AppButton from "../components/AppButton";
 import Screen from "../components/AppScreen";
 import AppTextInput from "../components/AppTextInput";
+import colors from "../config/colors";
 import routes from "../navigation/routes";
 
 function LoginScreen({ navigation }) {
@@ -11,12 +14,18 @@ function LoginScreen({ navigation }) {
     const [password, setPassword] = useState();
 
     return (
-        <Screen>
-            <Image style={styles.logo} source={require("../assets/gear.png")} />
+        <Screen style={styles.screen}>
+            <MaterialCommunityIcons
+                name="account-convert"
+                size={100}
+                color="dodgerblue"
+                style={styles.logo}
+            />
+            <Text style={styles.message}>Service Manager Lite</Text>
             <AppTextInput
                 autoCapitalize="none"
                 autoCorrect={false}
-                icon="email"
+                icon="email-outline"
                 keyboardType="email-address"
                 onChangeText={(text) => setEmail(text)}
                 placeholder="Email"
@@ -24,14 +33,23 @@ function LoginScreen({ navigation }) {
             <AppTextInput
                 autoCapitalize="none"
                 autoCorrect={false}
-                icon="lock"
+                icon="eye-off"
                 onChangeText={(text) => setPassword(text)}
-                placeholdrer="Password"
+                placeholder="Password"
                 secureTextEntry
             />
+            <Text style={{ color: colors.secondary }}>
+                Please log in to continue
+            </Text>
             <AppButton
-                title="Login"
-                onPress={() => navigation.navigate(routes.JOB_LIST)}
+                title="Log in"
+                onPress={() => {
+                    Keyboard.dismiss();
+                    navigation.navigate(routes.HOME);
+                }}
+                style={{
+                    marginVertical: 40,
+                }}
             />
         </Screen>
     );
@@ -39,11 +57,14 @@ function LoginScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     logo: {
-        width: 80,
-        height: 80,
-        alignSelf: "center",
-        marginTop: 70,
+        marginTop: 25,
         marginBottom: 20,
+    },
+    message: {
+        color: colors.primary,
+        fontSize: 15,
+        fontWeight: "bold",
+        marginVertical: 5,
     },
 });
 

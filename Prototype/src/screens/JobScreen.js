@@ -1,8 +1,14 @@
-import { FontAwesome5 } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
-import { Text, View, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 
 import Screen from "../components/AppScreen";
+
+/*
+    Known issue:
+    When the title is too long, all alignment gets thrown off.
+    TODO: Fix this
+ */
 
 function JobScreen({ route }) {
     const job = route.params;
@@ -10,25 +16,37 @@ function JobScreen({ route }) {
         <Screen>
             <View style={styles.container}>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.title} numberOfLines={1}>
-                        {job.title}
-                    </Text>
-                    <Text style={styles.time}>{job.time}</Text>
+                    <View>
+                        <Text style={styles.title} numberOfLines={2}>
+                            {job.title}
+                        </Text>
+                        <Text style={styles.soft}>{job.customer}</Text>
+                        <Text style={styles.soft}>{job.address}</Text>
+                    </View>
+                    <View style={styles.timeContainer}>
+                        <Text style={styles.soft}>{job.subtitle}</Text>
+                    </View>
                 </View>
-                <Text style={styles.customerName}>{job.customer}</Text>
                 <View style={styles.detailsContainer}>
                     <Text style={styles.details} numberOfLines={10}>
                         {job.description}
                     </Text>
                 </View>
                 <View style={styles.footer}>
-                    <FontAwesome5
-                        name="map-marker-alt"
+                    <MaterialCommunityIcons
+                        name="alert-circle-outline"
                         size={24}
-                        color="dodgerblue"
+                        color="tomato"
+                        style={{ margin: 5 }}
                     />
-                    <Text style={styles.address}>{job.address}</Text>
-                    <Text style={styles.subTitle}>{job.subTitle}</Text>
+                    <Text
+                        style={{
+                            textAlignVertical: "center",
+                            color: "tomato",
+                        }}
+                    >
+                        Report job problem
+                    </Text>
                 </View>
             </View>
         </Screen>
@@ -52,7 +70,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingHorizontal: 15,
     },
-    customerName: {
+    soft: {
         color: "grey",
         fontSize: 20,
     },
@@ -66,27 +84,30 @@ const styles = StyleSheet.create({
         padding: 5,
         borderTopWidth: 1,
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
     },
     image: {
         width: "100%",
         height: 200,
     },
     subTitle: {
-        textAlign: "right",
         fontSize: 15,
-        flex: 1,
         color: "black",
     },
     time: {
         fontSize: 18,
     },
+    timeContainer: {
+        flexDirection: "column",
+        justifyContent: "flex-end",
+    },
     title: {
         fontSize: 25,
         fontWeight: "bold",
+        marginVertical: 10,
     },
     titleContainer: {
-        borderBottomWidth: 2,
+        borderBottomWidth: 1,
         borderBottomColor: "grey",
         flexDirection: "row",
         justifyContent: "space-between",

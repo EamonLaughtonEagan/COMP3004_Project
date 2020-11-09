@@ -1,43 +1,66 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, ImageBackground, View, Image, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+
+import AppButton from "../components/AppButton";
+import Screen from "../components/AppScreen";
+import colors from "../config/colors";
+import routes from "../navigation/routes";
 
 function WelcomeScreen({ navigation }) {
     return (
-        <ImageBackground
-            style={styles.background}
-            source={require("../assets/gradient.jpg")}
-        >
-            <View style={styles.logoContainer}>
-                <Image
-                    style={styles.logo}
-                    source={require("../assets/logo-red.png")}
+        <Screen>
+            <View
+                style={{
+                    flex: 1,
+                    alignItems: "center",
+                }}
+            >
+                <View
+                    style={{
+                        alignItems: "center",
+                        justifyContent: "space-around",
+                    }}
+                >
+                    <MaterialCommunityIcons
+                        name="account-convert"
+                        size={100}
+                        color={colors.primary}
+                        style={styles.logo}
+                    />
+                    <Text style={styles.logotitle}>
+                        Service Management Lite
+                    </Text>
+                </View>
+
+                <Text style={styles.logosubtitle}>
+                    Keeping pool companies organized since 2020
+                </Text>
+                <View style={{ marginVertical: 50 }} />
+                <AppButton
+                    title="Get Started"
+                    onPress={() => navigation.navigate(routes.LOGIN)}
                 />
-                <Text>Sell What You Don't Need</Text>
             </View>
-            <View style={styles.loginButton} />
-        </ImageBackground>
+        </Screen>
     );
 }
 
 const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        justifyContent: "flex-end",
-        alignItems: "center",
-    },
     logo: {
-        width: 100,
-        height: 100,
+        marginTop: 25,
+        marginBottom: 20,
     },
-    logoContainer: {
-        position: "absolute",
-        top: 70,
-        alignItems: "center",
+    logotitle: {
+        color: colors.primary,
+        fontSize: 30,
+        margin: 5,
     },
-    loginButton: {
-        width: "100%",
-        height: 70,
-        backgroundColor: "#fc5c65",
+    logosubtitle: {
+        color: colors.secondary,
+        fontSize: 12,
+        textAlign: "center",
+        alignSelf: "stretch",
     },
 });
 
