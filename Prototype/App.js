@@ -1,12 +1,12 @@
 import "react-native-gesture-handler";
 import NavigationContainer from "@react-navigation/native/src/NavigationContainer";
 import { createStackNavigator } from "@react-navigation/stack";
-import React from "react";
+import React, { useState } from "react";
 
 import HomeNavigator from "./src/navigation/HomeNavigator";
+import WelcomeNavigator from "./src/navigation/WelcomeNavigator";
 import routes from "./src/navigation/routes";
 import JobListScreen from "./src/screens/JobListScreen";
-import LoginScreen from "./src/screens/LoginScreen";
 
 const Stack = createStackNavigator();
 const StackNavigator = () => (
@@ -25,7 +25,7 @@ const StackNavigator = () => (
 export default function App() {
     return (
         <NavigationContainer>
-            <HomeNavigator />
+            <WelcomeNavigator />
         </NavigationContainer>
     );
 }
