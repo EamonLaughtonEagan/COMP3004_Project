@@ -1,31 +1,33 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 
-function JobCard({ title, subTitle, description, address, time }) {
+function JobItem({ title, subTitle, description, address, time, onPress }) {
     return (
-        <View style={styles.container}>
-            <View style={styles.titleContainer}>
-                <Text style={styles.title} numberOfLines={1}>
-                    {title}
-                </Text>
-                <Text style={styles.time}>{time}</Text>
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={styles.container}>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.title} numberOfLines={1}>
+                        {title}
+                    </Text>
+                    <Text style={styles.time}>{time}</Text>
+                </View>
+                <View style={styles.detailsContainer}>
+                    <Text style={styles.details} numberOfLines={3}>
+                        {description}
+                    </Text>
+                </View>
+                <View style={styles.footer}>
+                    <FontAwesome5
+                        name="map-marker-alt"
+                        size={24}
+                        color="dodgerblue"
+                    />
+                    <Text style={styles.address}>{address}</Text>
+                    <Text style={styles.subTitle}>{subTitle}</Text>
+                </View>
             </View>
-            <View style={styles.detailsContainer}>
-                <Text style={styles.details} numberOfLines={3}>
-                    {description}
-                </Text>
-            </View>
-            <View style={styles.footer}>
-                <FontAwesome5
-                    name="map-marker-alt"
-                    size={24}
-                    color="dodgerblue"
-                />
-                <Text style={styles.address}>{address}</Text>
-                <Text style={styles.subTitle}>{subTitle}</Text>
-            </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -84,4 +86,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default JobCard;
+export default JobItem;
