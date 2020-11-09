@@ -1,4 +1,5 @@
 export default Object.freeze({
     LOGIN: "Login",
-    JOBS: "Jobs",
+    JOB_LIST: "Jobs",
+    JOB: "Job",
 });
