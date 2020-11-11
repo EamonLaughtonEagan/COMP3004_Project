@@ -37,7 +37,11 @@ function JobScreen({ route }) {
                         name="alert-circle-outline"
                         size={24}
                         color="tomato"
-                        style={{ margin: 5 }}
+                        style={{
+                            margin: 5,
+                            flexDirection: "column",
+                            alignSelf: "center",
+                        }}
                     />
                     <Text
                         style={{

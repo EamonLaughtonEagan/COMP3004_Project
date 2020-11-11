@@ -21,7 +21,7 @@ function LoginScreen({ navigation }) {
                 color="dodgerblue"
                 style={styles.logo}
             />
-            <Text style={styles.message}>Service Manager Lite</Text>
+            <Text style={styles.message}>Service Management Lite</Text>
             <AppTextInput
                 autoCapitalize="none"
                 autoCorrect={false}
