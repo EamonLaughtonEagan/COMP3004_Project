@@ -1,83 +1,31 @@
-// import React from 'react';
-// import {StyleSheet, View} from 'react-native';
-// import WelcomeScreen from "./app/screens/WelcomeScreen";
-// import ViewImageScreen from "./app/screens/ViewImageScreen";
-//
-// import AppText from './app/components/AppText';
-// import {MaterialCommunityIcons} from '@expo/vector-icons';
-// import GeneralExample from "./app/screens/Card";
+import "react-native-gesture-handler";
+import NavigationContainer from "@react-navigation/native/src/NavigationContainer";
+import { createStackNavigator } from "@react-navigation/stack";
+import React, { useState } from "react";
 
-import React from 'react';
+import HomeNavigator from "./src/navigation/HomeNavigator";
+import WelcomeNavigator from "./src/navigation/WelcomeNavigator";
+import routes from "./src/navigation/routes";
+import JobListScreen from "./src/screens/JobListScreen";
 
-import {AppLoading} from 'expo';
-import * as Font from 'expo-font';
-import {Ionicons} from '@expo/vector-icons';
+const Stack = createStackNavigator();
+const StackNavigator = () => (
+    <NavigationContainer>
+        <Stack.Navigator>
+            <Stack.Screen
+                name={routes.LOGIN}
+                component={LoginScreen}
+                options={{ title: "Login", headerShown: false }}
+            />
+            <Stack.Screen name={routes.JOB_LIST} component={JobListScreen} />
+        </Stack.Navigator>
+    </NavigationContainer>
+);
 
-import {Container, Content, ListItem} from 'native-base';
-
-import AppFooter from "./src/components/AppFooter";
-import AppHeader from "./src/components/AppHeader";
-import AppCard from "./src/components/AppCard";
-
-export default class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isReady: false,
-        };
-    }
-
-    async componentDidMount() {
-        await Font.loadAsync({
-            Roboto: require('native-base/Fonts/Roboto.ttf'),
-            Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-            ...Ionicons.font,
-        });
-        this.setState({isReady: true});
-    }
-
-    render() {
-        if (!this.state.isReady) {
-            return <AppLoading/>;
-        }
-
-        return (
-            <Container>
-                <AppHeader title="November 7"/>
-                <Content padder>
-                    <ListItem itemDivider>
-                        <AppCard/>
-                    </ListItem>
-                    <AppCard/>
-                    <AppCard/>
-
-                    <AppCard/>
-                </Content>
-
-                <AppFooter/>
-            </Container>
-        );
-    }
-
+export default function App() {
+    return (
+        <NavigationContainer>
+            <WelcomeNavigator />
+        </NavigationContainer>
+    );
 }
-
-
-// export default function App() {
-//     return <GeneralExample/>
-//
-//     // return <ViewImageScreen/>
-//     //return <WelcomeScreen/>;
-//
-//     // return <View style={styles.app}>
-//     //         <AppText>React Native is neat</AppText>
-//     //         <MaterialCommunityIcons name="email" size={50} color={"tomato"}/>
-//     //     </View>
-// }
-//
-// const styles = StyleSheet.create({
-//     app: {
-//         flex: 1,
-//         justifyContent: "center",
-//         alignItems: "center",
-//     }
-// });

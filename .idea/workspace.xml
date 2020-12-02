@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:Lint" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2dd29921-a0d7-4fda-8ab5-6d2a71c19b00" name="Default Changelist" comment="Touch up before presentation">
+      <change afterPath="$PROJECT_DIR$/Prototype/eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/jest.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/assets/client.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/components/AppScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/components/JobItem.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/components/lists/ListItem.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/components/lists/ListItemDeleteAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/components/lists/ListItemSeparator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/components/lists/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/config/styles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/navigation/AccountNavigator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/navigation/HomeNavigator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/navigation/JobListNavigator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/navigation/WelcomeNavigator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/navigation/routes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/screens/AccountScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/screens/JobListScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/src/screens/JobScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Prototype/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/babel.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/AppButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppCard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/AppFooter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/AppHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppText.android.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/AppText.android.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppText.ios.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/AppText.ios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppText.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/AppText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppTextInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/AppTextInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/config/colors.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/config/colors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/screens/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/screens/LoginScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/screens/TechnicianHome.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/screens/ViewImageScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/screens/ViewImageScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/screens/WelcomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/screens/WelcomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/yarn.lock" afterDir="false" />
+    </list>
+    <list id="2ad5376c-87b5-4477-b2e1-70d4b5a5bef3" name="Configured ESLint (expo/universe), Prettier, and formatted all .js files." comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="BRANCH" value="Lint" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1jymAXE20xVZBvAygyB1nFxqGS1" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.15.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.14.6" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Prototype/src/screens" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+    <property name="ts.external.directory.path" value="C:\Users\Trevor\IdeaProjects\COMP3004_Project\Prototype\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Trevor\IdeaProjects\COMP3004_Project\Prototype\src" />
+      <recent name="C:\Users\Trevor\IdeaProjects\COMP3004_Project\Prototype\src\screens" />
+      <recent name="C:\Users\Trevor\IdeaProjects\COMP3004_Project\Prototype" />
+      <recent name="C:\Users\Trevor\IdeaProjects\COMP3004_Project\Prototype\src\components" />
+      <recent name="C:\Users\Trevor\IdeaProjects\COMP3004_Project" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Trevor\IdeaProjects\COMP3004_Project\Prototype\src\screens" />
+      <recent name="C:\Users\Trevor\IdeaProjects\COMP3004_Project\Prototype\src\assets" />
+      <recent name="C:\Users\Trevor\IdeaProjects\COMP3004_Project\Prototype\src\components" />
+      <recent name="C:\Users\Trevor\IdeaProjects\COMP3004_Project\Prototype\src\config" />
+      <recent name="C:\Users\Trevor\IdeaProjects\COMP3004_Project\Prototype\src\nav" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2dd29921-a0d7-4fda-8ab5-6d2a71c19b00" name="Default Changelist" comment="" />
+      <changelist id="2ad5376c-87b5-4477-b2e1-70d4b5a5bef3" name="Configured ESLint (expo/universe), Prettier, and formatted all .js files." comment="" />
+      <created>1604784562724</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604784562724</updated>
+      <workItem from="1604784563791" duration="27000" />
+      <workItem from="1604784673924" duration="2129000" />
+      <workItem from="1604788494727" duration="4775000" />
+      <workItem from="1604793300510" duration="14167000" />
+      <workItem from="1604810433570" duration="226000" />
+      <workItem from="1604813016323" duration="2310000" />
+      <workItem from="1604815357117" duration="2686000" />
+      <workItem from="1604818078178" duration="3129000" />
+      <workItem from="1604821237359" duration="8689000" />
+      <workItem from="1604856389123" duration="31661000" />
+      <workItem from="1604889875439" duration="36694000" />
+      <workItem from="1604983857373" duration="1641000" />
+      <workItem from="1605116804028" duration="3428000" />
+      <workItem from="1605993957869" duration="5518000" />
+      <workItem from="1606093151007" duration="4448000" />
+      <workItem from="1606178972179" duration="5507000" />
+      <workItem from="1606682036554" duration="2754000" />
+      <workItem from="1606872642019" duration="167000" />
+      <workItem from="1606872883652" duration="2535000" />
+    </task>
+    <task id="LOCAL-00006" summary="Updated readme for Prototype setup">
+      <created>1604791135359</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1604791135359</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Updated Image import to react-native from native-base">
+      <created>1604791623945</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1604791623945</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Ignored local .idea/ ide config folder">
+      <created>1604792085842</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1604792085842</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Cleanup">
+      <created>1604793366976</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1604793366976</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Modified component syntax to match others">
+      <created>1604793641701</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1604793641701</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Refactored - renamed CardView to AppCard and moved to /components/">
+      <created>1604793783341</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1604793783341</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Refactored - renamed CardView to AppCard and moved to /components/">
+      <created>1604793810778</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1604793810778</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Modified component syntax to match others.">
+      <created>1604794275080</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1604794275080</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fixed AppCard import after refactor">
+      <created>1604794296193</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1604794296193</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added &quot;yarn add expo&quot; command in case it's not installed yet">
+      <created>1604794326499</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1604794326499</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Initial branch commit">
+      <created>1604809279542</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1604809279542</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Fixed stylesheet syntax">
+      <created>1604809691091</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1604809691091</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Configured ESLint (expo/universe), Prettier, and formatted all .js files.">
+      <created>1604820374977</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1604820374977</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Initial ESLint (expo/universe) and Prettier config.">
+      <created>1604820762235</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1604820762235</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Formatted with ESLint and Prettier">
+      <created>1604820801392</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1604820801392</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Formatted with ESLint and Prettier">
+      <created>1604820826963</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1604820826963</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Moved from root to /Prototype/">
+      <created>1604821356974</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1604821356975</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Refactored AppJob.js to JobScreen.js">
+      <created>1604821421189</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1604821421189</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Initial commit">
+      <created>1604869393784</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1604869393784</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Initial commit">
+      <created>1604869425194</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1604869425194</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Cross-platform font now supports children prop">
+      <created>1604869477697</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1604869477697</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Merged from master">
+      <created>1604869505179</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1604869505179</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Updated to support navigation">
+      <created>1604869529555</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1604869529555</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Static strings to standardize navigation screen names">
+      <created>1604869565724</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1604869565724</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Added grey colour">
+      <created>1604869584348</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1604869584348</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Fixed formatting">
+      <created>1604869599297</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1604869599297</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Changed style to be more minimal">
+      <created>1604869643332</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1604869643332</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Added react-navigation dependencies">
+      <created>1604869682142</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1604869682142</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Migrated app container to NavigationContainer">
+      <created>1604869708204</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1604869708204</updated>
+    </task>
+    <task id="LOCAL-00035" summary="eslintrc.js required for eslint support">
+      <created>1604870799652</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1604870799652</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Formatted with Prettier">
+      <created>1604870810107</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1604870810107</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Changed Text back to default type">
+      <created>1604871476218</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1604871476218</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Changed name: JobScreen.js &gt; JobListScreen.js">
+      <created>1604876335260</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1604876335260</updated>
+    </task>
+    <task id="LOCAL-00039" summary="expo-constants dependency added">
+      <created>1604886949950</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1604886949950</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Moved navigators from ./ to /src/navigation/">
+      <created>1604886998405</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1604886998405</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Organized to include navigators">
+      <created>1604887030179</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1604887030179</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Made clickable by wrapping container in TouchableWithoutFeedback">
+      <created>1604887085270</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1604887085270</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Initial commit">
+      <created>1604887103763</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1604887103763</updated>
+    </task>
+    <task id="LOCAL-00044" summary="expo-constants dependency added">
+      <created>1604887121745</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1604887121745</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Overhauled UI for a cleaner look. More icons, cleaner layout.">
+      <created>1604927006139</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1604927006139</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Moved to HomeNavigator.js">
+      <created>1604927064797</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1604927064797</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Navigation is now complete and fully functional for the prototype demo">
+      <created>1604927100655</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1604927100655</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Secondary color is now nicer">
+      <created>1604927155141</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1604927155141</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Added a LienarGradient so screens are not plain white anymore">
+      <created>1604927198498</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1604927198498</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Updated to a more minimal look">
+      <created>1604927235226</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1604927235227</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Added expo-linear-gradient as a dependency">
+      <created>1604927255303</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1604927255303</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Changed home screen to a new Welcome Screen">
+      <created>1604927311337</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1604927311337</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Rebuilt JobItem component for a cleaner look with more icons, and data that is better organized.">
+      <created>1604927354021</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1604927354021</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Touch up before presentation">
+      <created>1605119402495</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1605119402495</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Lint" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="Lint" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added grey colour" />
+    <MESSAGE value="Fixed formatting" />
+    <MESSAGE value="Changed style to be more minimal" />
+    <MESSAGE value="Added react-navigation dependencies" />
+    <MESSAGE value="Migrated app container to NavigationContainer" />
+    <MESSAGE value="eslintrc.js required for eslint support" />
+    <MESSAGE value="Formatted with Prettier" />
+    <MESSAGE value="Changed Text back to default type" />
+    <MESSAGE value="Changed name: JobScreen.js &gt; JobListScreen.js" />
+    <MESSAGE value="Moved navigators from ./ to /src/navigation/" />
+    <MESSAGE value="Organized to include navigators" />
+    <MESSAGE value="Made clickable by wrapping container in TouchableWithoutFeedback" />
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="expo-constants dependency added" />
+    <MESSAGE value="Merge with origin/Lint" />
+    <MESSAGE value="Overhauled UI for a cleaner look. More icons, cleaner layout." />
+    <MESSAGE value="Moved to HomeNavigator.js" />
+    <MESSAGE value="Navigation is now complete and fully functional for the prototype demo" />
+    <MESSAGE value="Secondary color is now nicer" />
+    <MESSAGE value="Added a LienarGradient so screens are not plain white anymore" />
+    <MESSAGE value="Updated to a more minimal look" />
+    <MESSAGE value="Added expo-linear-gradient as a dependency" />
+    <MESSAGE value="Changed home screen to a new Welcome Screen" />
+    <MESSAGE value="Rebuilt JobItem component for a cleaner look with more icons, and data that is better organized." />
+    <MESSAGE value="Touch up before presentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Touch up before presentation" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="828" y="412" key="#ESLint" timestamp="1604817867623">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="828" y="412" key="#ESLint/0.0.1920.1040@0.0.1920.1040" timestamp="1604817867623" />
+    <state x="586" y="198" key="#Inspections" timestamp="1604925995831">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="586" y="198" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1604925995831" />
+    <state x="705" y="343" key="#Notifications" timestamp="1604899345520">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="705" y="343" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1604899345520" />
+    <state x="469" y="177" width="1092" height="763" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604792756708">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="469" y="177" width="1092" height="763" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604792756708" />
+    <state x="721" y="321" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604889696307">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="721" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1604889696307" />
+    <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1606872656898">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606872656898" />
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606873269386">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606873269386" />
+    <state x="991" y="100" key="CommitChangelistDialog2" timestamp="1604808983549">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="991" y="100" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604808983549" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1604793278755">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604793278755" />
+    <state x="827" y="293" key="EnvironmentVariablesDialog" timestamp="1604790580744">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="827" y="293" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604790580744" />
+    <state x="325" y="283" key="FileChooserDialogImpl" timestamp="1604825249921">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="325" y="283" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604825249921" />
+    <state width="916" height="287" key="GridCell.Tab.0.bottom" timestamp="1604809910864">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="916" height="287" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604809910864" />
+    <state width="916" height="287" key="GridCell.Tab.0.center" timestamp="1604809910864">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="916" height="287" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604809910864" />
+    <state width="916" height="287" key="GridCell.Tab.0.left" timestamp="1604809910864">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="916" height="287" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604809910864" />
+    <state width="916" height="287" key="GridCell.Tab.0.right" timestamp="1604809910864">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="916" height="287" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604809910864" />
+    <state x="184" y="86" key="MergeDialog" timestamp="1604887902408">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604887902408" />
+    <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1604887905285">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604887905285" />
+    <state x="688" y="222" key="RollbackChangesDialog" timestamp="1604819939006">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="688" y="222" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604819939006" />
+    <state x="296" y="162" key="SettingsEditor" timestamp="1604884525623">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="296" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1604884525623" />
+    <state x="807" y="435" key="VCS.ChangelistChooser" timestamp="1604820571260">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="807" y="435" key="VCS.ChangelistChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1604820571260" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605119405248">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605119405248" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1604884467966">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604884467966" />
+    <state x="611" y="169" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1604823732434">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="611" y="169" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1604823732434" />
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604922652181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604922652181" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604927385193">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604927385193" />
+  </component>
+</project>

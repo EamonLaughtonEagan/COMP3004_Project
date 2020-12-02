@@ -1,29 +1,67 @@
-import React, { Component } from 'react';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-import { Container, Header, Content, Form, Item, Input, StyleSheet, View } from 'native-base';
-import AppButton from '../components/AppButton';
-import colors from '../config/colors';
+import AppButton from "../components/AppButton";
+import Screen from "../components/AppScreen";
+import colors from "../config/colors";
+import routes from "../navigation/routes";
 
-export default class FormExample extends Component {
-    render() {
-        return (
-            <View style={{
+function WelcomeScreen({ navigation }) {
+    return (
+        <Screen>
+            <View
+                style={{
                     flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center"}}>
-                        
-                <AppButton title="Login" color="primary"/>
-                <AppButton title="Register" color="secondary"/>
+                    alignItems: "center",
+                }}
+            >
+                <View
+                    style={{
+                        alignItems: "center",
+                        justifyContent: "space-around",
+                    }}
+                >
+                    <MaterialCommunityIcons
+                        name="account-convert"
+                        size={100}
+                        color={colors.primary}
+                        style={styles.logo}
+                    />
+                    <Text style={styles.logotitle}>
+                        Service Management Lite
+                    </Text>
+                </View>
+
+                <Text style={styles.logosubtitle}>
+                    Keeping pool companies organized since 2020
+                </Text>
+                <View style={{ marginVertical: 50 }} />
+                <AppButton
+                    title="Get Started"
+                    onPress={() => navigation.navigate(routes.LOGIN)}
+                />
             </View>
-        );
-    }
+        </Screen>
+    );
 }
 
-/*const styles = StyleSheet.create ({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    }
-})
-*/
+const styles = StyleSheet.create({
+    logo: {
+        marginTop: 25,
+        marginBottom: 20,
+    },
+    logotitle: {
+        color: colors.primary,
+        fontSize: 30,
+        margin: 5,
+    },
+    logosubtitle: {
+        color: colors.secondary,
+        fontSize: 12,
+        textAlign: "center",
+        alignSelf: "stretch",
+    },
+});
+
+export default WelcomeScreen;

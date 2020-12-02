@@ -1,49 +1,71 @@
-import React, { useState } from 'react';
-import {StyleSheet, ImageBackground, View, Image, Text} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React, { useState } from "react";
+import { StyleSheet, Keyboard, Text } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
-import Screen from '../components/Screen';
-import AppTextInput from '../components/AppTextInput';
-import AppButton from '../components/AppButton';
+import AppButton from "../components/AppButton";
+import Screen from "../components/AppScreen";
+import AppTextInput from "../components/AppTextInput";
+import colors from "../config/colors";
+import routes from "../navigation/routes";
 
-function LoginScreen(props) {
+function LoginScreen({ navigation }) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    
 
     return (
-        <Screen>
-            <Image 
+        <Screen style={styles.screen}>
+            <MaterialCommunityIcons
+                name="account-convert"
+                size={100}
+                color="dodgerblue"
                 style={styles.logo}
-                source={require('../assets/gear.png')}/>
-            <AppTextInput 
+            />
+            <Text style={styles.message}>Service Management Lite</Text>
+            <AppTextInput
                 autoCapitalize="none"
                 autoCorrect={false}
-                icon="email"
+                icon="email-outline"
                 keyboardType="email-address"
-                onChangeText={text => setEmail(text)}
+                onChangeText={(text) => setEmail(text)}
                 placeholder="Email"
             />
-            <AppTextInput 
+            <AppTextInput
                 autoCapitalize="none"
                 autoCorrect={false}
-                icon="lock"
-                onChangeText={text => setPassword(text)}
-                placeholdrer="Password"
-                secureTextEntry={true}
+                icon="eye-off"
+                onChangeText={(text) => setPassword(text)}
+                placeholder="Password"
+                secureTextEntry
             />
-            <AppButton title="Login" onPress={() => console.log(email, password)}/>
+            <Text style={{ color: colors.secondary }}>
+                Please log in to continue
+            </Text>
+            <AppButton
+                title="Log in"
+                onPress={() => {
+                    Keyboard.dismiss();
+                    navigation.navigate(routes.HOME);
+                }}
+                style={{
+                    marginVertical: 40,
+                }}
+            />
         </Screen>
     );
 }
 
 const styles = StyleSheet.create({
     logo: {
-        width: 80,
-        height: 80,
-        alignSelf: 'center',
-        marginTop: 70,
+        marginTop: 25,
         marginBottom: 20,
-    }
-})
+    },
+    message: {
+        color: colors.primary,
+        fontSize: 15,
+        fontWeight: "bold",
+        marginVertical: 5,
+    },
+});
 
 export default LoginScreen;
