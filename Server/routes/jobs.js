@@ -1,18 +1,15 @@
 const express = require('express')
-const serverless = require('serverless-http')
-const bodyParser = require('body-parser')
 const pool = require('../configs/dbConfig')
 
-const app = express()
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+// const app = express()
+const router = express.Router();
 
 // Handle job GET route for all jobs
-app.get('/jobs/', (req, res) => {
-	const query = 'SELECT * FROM jobs ' +
-		'INNER JOIN customers ON jobs.customer_id = customers.customer_id ' +
-		'INNER JOIN sites ON jobs.site_id = sites.SITE_ID'
+router.get('/', (req, res) => {
+	const query = `SELECT * FROM jobs ` +
+		`INNER JOIN customers ON jobs.customer_id = customers.customer_id ` +
+		`INNER JOIN sites ON jobs.site_id = sites.SITE_ID`
+
 	pool.query(query, (err, results, fields) => {
 		if (err) {
 			const response = { data: null, message: err.message, }
@@ -30,7 +27,13 @@ app.get('/jobs/', (req, res) => {
 })
 
 // Handle job GET route for specific job
-app.get('/jobs/:id', (req, res) => {
+router.get('/:id', (req, res) => {
+	if (!req.is('application/json')) {
+		const response = { data: null, message: "Content-type must be application/json" }
+		res.status(400).send(response);
+		return
+	}
+
 	const id = req.params.id
 	const query = `SELECT * FROM jobs WHERE job_id=${id}`
 	pool.query(query, (err, results, fields) => {
@@ -59,11 +62,18 @@ app.get('/jobs/:id', (req, res) => {
 })
 
 // Handle job POST route
-app.post('/jobs/', (req, res) => {
+router.post('/', (req, res) => {
+	if (!req.is('application/json')) {
+		const response = { data: null, message: "Content-type must be application/json" }
+		res.status(400).send(response);
+		return
+	}
+
 	const { customer_id, site_id, start_time, end_time, name, description } = req.body
 
-	const query = `INSERT INTO jobs (customer_id, site_id, start_time, end_time, name, description) VALUES 
-	('${customer_id}', '${site_id}', '${start_time}', '${end_time}', '${name}', '${description}')`
+	const query = `INSERT INTO jobs (customer_id, site_id, start_time, end_time, name, description) VALUES ` +
+	`('${customer_id}', '${site_id}', '${start_time}', '${end_time}', '${name}', '${description}') `;
+
 	pool.query(query, (err, results, fields) => {
 		if (err) {
 			const response = { data: null, message: err.message, }
@@ -82,14 +92,20 @@ app.post('/jobs/', (req, res) => {
 })
 
 // Handle job PUT route
-app.put('/jobs/:id', (req, res) => {
+router.put('/:id', (req, res) => {
+	if (!req.is('application/json')) {
+		const response = { data: null, message: "Content-type must be application/json" }
+		res.status(400).send(response);
+		return
+	}
+
 	const { id } = req.params
 	const query = `SELECT * FROM jobs WHERE job_id=${id} LIMIT 1`
 	pool.query(query, (err, results, fields) => {
 		if (err) {
 			const response = { data: null, message: err.message, }
-			res.send(response)
-			return
+			res.send(response);
+			return;
 		}
 
 		const { job_id, customer_id, site_id, start_time, end_time, name, description } = { ...results[0], ...req.body }
@@ -97,7 +113,13 @@ app.put('/jobs/:id', (req, res) => {
 		const query = `UPDATE jobs SET ` +
 			`customer_id='${customer_id}', site_id='${site_id}', start_time='${start_time}', ` +
 			`end_time='${end_time}', name='${name}', description='${description}' ` +
-		    `WHERE job_id='${job_id}'`
+		    `WHERE job_id='${job_id}'`;
+
+		console.log("Executing query (" + query + ")");
+		console.log("...results[0] " + JSON.stringify(results[0]));
+		console.log("req.body " + JSON.stringify(req.body, null, 2));
+		console.log("spread: \ncustomer_id " + customer_id + " site_id " + site_id);
+		console.log("params " + JSON.stringify(req.params));
 
 		pool.query(query, (err, results, fields) => {
 			if (err) {
@@ -124,7 +146,13 @@ app.put('/jobs/:id', (req, res) => {
 })
 
 // Handler job DELETE route
-app.delete('/jobs/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
+	if (!req.is('application/json')) {
+		const response = { data: null, message: "Content-type must be application/json" }
+		res.status(400).send(response);
+		return
+	}
+
 	const { id } = req.params
 	const query = `DELETE FROM jobs WHERE job_id=${id}`
 	pool.query(query, (err, results, fields) => {
@@ -141,11 +169,10 @@ app.delete('/jobs/:id', (req, res) => {
 	})
 })
 
-// Handle in-valid route
-app.all('*', function(req, res) {
-	const response = { data: null, message: 'Route not found!' }
+// Handle invalid /jobs/ route
+router.all('/*', function(req, res) {
+	const response = { data: null, message: 'Route not found' }
 	res.status(400).send(response)
 })
 
-// wrap express app instance with serverless http function
-module.exports.handler = serverless(app)
+module.exports = router;

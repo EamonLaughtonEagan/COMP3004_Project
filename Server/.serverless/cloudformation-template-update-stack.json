@@ -71,10 +71,10 @@
         }
       }
     },
-    "JobsLogGroup": {
+    "RestLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/sml-dev-jobs"
+        "LogGroupName": "/aws/lambda/sml-dev-rest"
       }
     },
     "IamRoleLambdaExecution": {
@@ -154,17 +154,17 @@
         }
       }
     },
-    "JobsLambdaFunction": {
+    "RestLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sml/dev/1607128722388-2020-12-05T00:38:42.388Z/sml.zip"
+          "S3Key": "serverless/sml/dev/1607148972861-2020-12-05T06:16:12.861Z/sml.zip"
         },
-        "FunctionName": "sml-dev-jobs",
-        "Handler": "routes/jobs.handler",
+        "FunctionName": "sml-dev-rest",
+        "Handler": "index.handler",
         "MemorySize": 128,
         "Role": {
           "Fn::GetAtt": [
@@ -176,17 +176,17 @@
         "Timeout": 6
       },
       "DependsOn": [
-        "JobsLogGroup"
+        "RestLogGroup"
       ]
     },
-    "JobsLambdaVersionAmW2uYTxFqEKRkyhBx77amvIDBcOd4aQPr44hJ72c": {
+    "RestLambdaVersionzGXCi4LfhKo6wcGiyeu693rEVGx8jP7Js9cZEpVY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "JobsLambdaFunction"
+          "Ref": "RestLambdaFunction"
         },
-        "CodeSha256": "M13EgEXB2fsyMOs0BS9D3phk88JGN5Z/wZLlZomWhP4="
+        "CodeSha256": "HiAdQoRCaraKGUjIy7A2R8l7Fs+DHkD0klIJ3brwmR8="
       }
     },
     "ApiGatewayRestApi": {
@@ -228,6 +228,33 @@
         }
       }
     },
+    "ApiGatewayResourceUsers": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "users",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceUsersIdVar": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceUsers"
+        },
+        "PathPart": "{id}",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
     "ApiGatewayMethodJobsGet": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -259,7 +286,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "JobsLambdaFunction",
+                    "RestLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -302,7 +329,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "JobsLambdaFunction",
+                    "RestLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -345,7 +372,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "JobsLambdaFunction",
+                    "RestLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -388,7 +415,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "JobsLambdaFunction",
+                    "RestLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -431,7 +458,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "JobsLambdaFunction",
+                    "RestLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -443,7 +470,222 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1607128717911": {
+    "ApiGatewayMethodUsersGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceUsers"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RestLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodUsersIdVarGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceUsersIdVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RestLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodUsersPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceUsers"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RestLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodUsersPut": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "PUT",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceUsers"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RestLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodUsersDelete": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "DELETE",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceUsers"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RestLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayDeployment1607148968705": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -456,15 +698,20 @@
         "ApiGatewayMethodJobsIdVarGet",
         "ApiGatewayMethodJobsPost",
         "ApiGatewayMethodJobsIdVarPut",
-        "ApiGatewayMethodJobsIdVarDelete"
+        "ApiGatewayMethodJobsIdVarDelete",
+        "ApiGatewayMethodUsersGet",
+        "ApiGatewayMethodUsersIdVarGet",
+        "ApiGatewayMethodUsersPost",
+        "ApiGatewayMethodUsersPut",
+        "ApiGatewayMethodUsersDelete"
       ]
     },
-    "JobsLambdaPermissionApiGateway": {
+    "RestLambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
           "Fn::GetAtt": [
-            "JobsLambdaFunction",
+            "RestLambdaFunction",
             "Arn"
           ]
         },
@@ -503,10 +750,10 @@
         "Ref": "ServerlessDeploymentBucket"
       }
     },
-    "JobsLambdaFunctionQualifiedArn": {
+    "RestLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "JobsLambdaVersionAmW2uYTxFqEKRkyhBx77amvIDBcOd4aQPr44hJ72c"
+        "Ref": "RestLambdaVersionzGXCi4LfhKo6wcGiyeu693rEVGx8jP7Js9cZEpVY"
       }
     },
     "ServiceEndpoint": {

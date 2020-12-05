@@ -11,8 +11,8 @@ provider:
   memorySize: 128
 
 functions:
-  jobs:
-    handler: routes/jobs.handler
+  rest:
+    handler: index.handler
     events:
       - http:
           path: jobs
@@ -29,4 +29,18 @@ functions:
       - http:
           path: jobs/{id}
           method: delete
-
+      - http:
+          path: users
+          method: get
+      - http:
+          path: users/{id}
+          method: get
+      - http:
+          path: users
+          method: post
+      - http:
+          path: users
+          method: put
+      - http:
+          path: users
+          method: delete
