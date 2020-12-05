@@ -4,18 +4,16 @@ const bodyParser = require('body-parser')
 
 const jobsRoute = require("./routes/jobs")
 const usersRoute = require("./routes/users")
+const sitesRoute = require("./routes/sites")
 
 const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-/*
-    /jobs/      - See /routes/jobs.js
-    /users/     - See /routes/users.js
- */
-app.use('/jobs', jobsRoute)
-app.use('/users', usersRoute)
+app.use('/jobs', jobsRoute);
+app.use('/users', usersRoute);
+app.use('/sites', sitesRoute);
 
 app.head('/', (req, res)=> {
     const response = {

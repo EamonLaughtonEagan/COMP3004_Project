@@ -44,3 +44,9 @@ functions:
       - http:
           path: users
           method: delete
+      - http:
+          path: sites
+          method: get
+      - http:
+          path: sites/{id}
+          method: get
