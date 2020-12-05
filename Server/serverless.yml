@@ -1,0 +1,32 @@
+# serverless.yml
+service: sml
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-2
+  memorySize: 128
+
+functions:
+  jobs:
+    handler: routes/jobs.handler
+    events:
+      - http:
+          path: jobs
+          method: get
+      - http:
+          path: jobs/{id}
+          method: get
+      - http:
+          path: jobs
+          method: post
+      - http:
+          path: jobs/{id}
+          method: put
+      - http:
+          path: jobs/{id}
+          method: delete
+
