@@ -11,5 +11,9 @@ web-build/
 Prototype/node_modules*
 Prototype/.expo/*
 
+Server/node_modules
+Server/.serverless/sml.zip
+Server/.idea
+
 # macOS
 .DS_Store
