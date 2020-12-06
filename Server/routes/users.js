@@ -26,12 +26,6 @@ router.get('/', (req, res) => {
 
 // GET request to /users/{id}
 router.get('/{id}', (req, res) => {
-    if (!req.is('application/json')) {
-        const response = {  data: null, message: "Content-type must be application/json" }
-        res.status(400).send(response);
-        return
-    }
-
     const {user_id} = req.body;
     const query = `SELECT * FROM users WHERE user_id = '${user_id}'`;
 
@@ -43,9 +37,7 @@ router.get('/{id}', (req, res) => {
         }
 
         const user = [...results][0];
-
     })
-
 
 })
 
@@ -127,14 +119,8 @@ router.put('/:id', (req, res) => {
     })
 })
 
-// DELETE request ot /users/{id} - Delete user by id
+// DELETE request to /users/{id} - Delete user by id
 router.delete('/:id', (req, res) => {
-    if (!req.is('application/json')) {
-        const response = { data: null, message: "Content-type must be application/json" }
-        res.status(400).send(response);
-        return
-    }
-
     const { id } = req.params
     const query = `DELETE FROM users WHERE user_id=${id}`
     pool.query(query, (err, results, fields) => {

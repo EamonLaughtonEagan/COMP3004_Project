@@ -1,5 +1,18 @@
-##README
-This is the middleware of our application. It is server-side code for receiving HTTP requests from clients. Requests are mapped to database queries, and the results are returned to the client.
+### REST API Documentation
+ 
+This code is the server-side middleware for our app. It receives HTTP requests from clients, mapping them to database and returning the results. Here is a short breakdown of the overall structure:
+
+1. AWS API Gateway routes url requests to this code. This app is built with Serverless CLI (see: serverless.yml) wrapped in Express for cleaner routing.
+
+2. When the API gateway receives a request, it is received and routed at index.js
+
+3. The request is then sent to the appropriate file (ie. /routes/jobs.js, /routes/users.js, etc.) 
+
+4. The request is then validated and, if correct, a query is run against the database.
+
+5. The database is hosted on AWS RDS. Connection pooling is done in /configs/dbConfig.js. Connection to the database is maintained if requests are made within three seconds of each other.
+
+6. In a callback, the response from the database is sent back to the client.
 
 The root URI of the api is https://bsdbwvwyf7.execute-api.us-east-2.amazonaws.com/dev/
 
@@ -72,22 +85,31 @@ API calls are made through standard HTTP get/post/put/delete requests to this UR
 
     Method:     POST 
     Resource:   jobs/
-    Params:     
-        - 
+    Params:
+        - customer_id       
+        - start_time        (SQL DATETIME format)
+        - end_time          (SQL DATETIME format)
+        - name
+        - description
 
 
 </details>
 
 <details>
-    <summary>summary</summary>
-
+    <summary>Update an existing job</summary>
+     
+     Method:    PUT
+     Resource:  jobs/
+     Params:
+        - job_id            REQUIRED
+        - customer_id       OPTIONAL
+        - site_id           OPTIONAL
+        - start_time        OPTIONAL
+        - end_time          OPTIONAL
+        - name              OPTIONAL
+        - description       OPTIONAL
 
 </details>
 
 
-Update an existing job:
 
-    PUT
-    https://bsdbwvwyf7.execute-api.us-east-2.amazonaws.com/dev/jobs/
-
-# A collapsible section with markdown
