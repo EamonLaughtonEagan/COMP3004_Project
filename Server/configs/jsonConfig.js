@@ -42,7 +42,7 @@ const formatJobFullJSON = (e) => {
 }
 
 const formatJobJSON = (e) => {
-    return {
+    let obj = {
         job_id: e.job_id,
         site_id: e.site_id,
         customer_id: e.customer_id,
@@ -50,6 +50,28 @@ const formatJobJSON = (e) => {
         description: e.description,
         start_time: e.start_time,
         end_time: e.end_time,
+
+        reports: []
+    }
+
+    if (e.report_id) {
+        obj.reports.push(formatReportsJSON(e));
+    }
+
+    return obj;
+}
+
+const formatReportsJSON = (e) => {
+    if (!e.report_id) {
+        return;
+    }
+
+    return {
+        report_id: e.report_id,
+        user_id: e.user_id,
+        job_id: e.job_id,
+        status_id: e.status_id,
+        text: e.text
     }
 }
 
@@ -77,6 +99,7 @@ const formatSiteJSON = (e) => {
 
 module.exports = {
     formatJobJSON,
+    formatReportsJSON,
     formatCustomerJSON,
     formatSiteJSON,
     formatJobFullJSON,
