@@ -1,0 +1,58 @@
+﻿Dev Logs
+Eamon Laughton-Eagan
+101043184
+
+
+Sep 21 - Sep 27
+* Setting up Git on everyone’s computer
+* Linking everyone’s Git to the GitHub repository
+* Learning the basics of React-Native and Expo
+
+
+Sep 28 - Oct 4
+* Learned more about how React-Native can work with Expo to publish apps
+
+
+Oct 5 - Oct 11
+* Setting up coding environment where I used VSCode as the primary designing environment
+* Setting up the android emulator
+
+
+Oct 12 - Oct 18
+* Working on app screens
+
+
+Oct 19 - Oct 25
+* Prepared for D2
+
+
+Oct 26 - Nov 1
+* Reading week, no work was done on the APP
+
+
+Nov 2 - Nov 8
+* Researching different architectural patterns to see which our app fits
+* Helping complete demo description
+* Finalizing aspects of app we want to present, which parts need dummy data
+
+
+Nov 9 - Nov 15
+* Planned for D3
+
+
+Nov 16 - Nov 22
+* Researched and selected architecture styles for the APP
+* Researched and selected design patterns for the APP
+
+
+Nov 23 - Nov 29
+* Studied for the oral interview and presentation
+
+
+Nov 30 - Dec 6
+* Created JobCreateScreen
+* Worked on D4
+
+
+Dec 7 - Dec 13
+* Present final project
