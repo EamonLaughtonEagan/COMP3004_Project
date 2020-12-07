@@ -11,27 +11,41 @@ import Screen from "../components/AppScreen";
  */
 
 function JobScreen({ route }) {
-    const job = route.params;
+    const jobData = route.params;
+    const job = jobData.job;
+    const customer = jobData.customer;
+    const site = jobData.site;
+    const reports = jobData.reports;
+
     return (
         <Screen>
             <View style={styles.container}>
+                {/*Title container*/}
+
                 <View style={styles.titleContainer}>
                     <View>
                         <Text style={styles.title} numberOfLines={2}>
                             {job.title}
                         </Text>
-                        <Text style={styles.soft}>{job.customer}</Text>
-                        <Text style={styles.soft}>{job.address}</Text>
+                        <Text style={styles.soft}>
+                            {customer.first_name} {customer.last_name}
+                        </Text>
+                        <Text style={styles.soft}>{site.address}</Text>
                     </View>
                     <View style={styles.timeContainer}>
-                        <Text style={styles.soft}>{job.subtitle}</Text>
+                        <Text style={styles.soft}>subtitle</Text>
                     </View>
                 </View>
+
+                {/*
+                Details container below
+                */}
                 <View style={styles.detailsContainer}>
                     <Text style={styles.details} numberOfLines={10}>
                         {job.description}
                     </Text>
                 </View>
+                {/*Footer*/}
                 <View style={styles.footer}>
                     <MaterialCommunityIcons
                         name="alert-circle-outline"
