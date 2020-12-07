@@ -1,3 +1,5 @@
+import {Server} from "../configs/server";
+
 const express = require('express')
 const pool = require('../configs/dbConfig')
 const router = express.Router();
@@ -9,29 +11,29 @@ const {formatCustomerJSON, formatSiteJSON, formatJobJSON,
 // job GET route for querying all jobs
 router.get('/', (req, res) => {
 	const jobsQuery = `SELECT
-		j.job_id, j.name, j.description, j.start_time, j.end_time,
-		c.customer_id, c.first_name, c.last_name, c.email, c.cell, c.home,
-		s.site_id, s.address, s.volume, s.type,
-		r.report_id, r.status_id, r.user_id, r.text 
-		FROM jobs AS j INNER JOIN customers AS c ON c.customer_id = j.customer_id
-		INNER JOIN sites AS s ON s.site_id = j.site_id
+			j.job_id, j.name, j.description, j.start_time, j.end_time,
+			c.customer_id, c.first_name, c.last_name, c.email, c.cell, c.home,
+			s.site_id, s.address, s.volume, s.type,
+			r.report_id, r.status_id, r.user_id, r.text 
+		
+		FROM jobs AS j INNER JOIN customers AS c 
+		ON c.customer_id = j.customer_id
+		
+		INNER JOIN sites AS s 
+		ON s.site_id = j.site_id
+		
 		LEFT OUTER JOIN reports AS r ON r.job_id = j.job_id
 		ORDER BY job_id
 		`
 
 	pool.query(jobsQuery, (err, results, fields) => {
 		if (err) {
-			const response = { data: null, message: err.message, }
-			res.status(500).send(response);
+			Server.send500(res, err.message);
 			return;
 		}
 
 		let jobs = parseJobs(results);
-
-		res.status(200).send({
-			data: jobs,
-			message: 'All jobs successfully retrieved.',
-		});
+		Server.sendOK(res, jobs, "All jobs successfully retrieved.");
 	});
 });
 
@@ -51,30 +53,25 @@ router.get('/:id', (req, res) => {
 
 	pool.query(query, (err, results, fields) => {
 		if (err) {
-			const response = { data: null, message: err.message, }
-			res.status(500).send(response);
+			Server.send500(err.message);
 			return;
 		}
 
 		let response;
 		if (results) {
-			// Only one job is being queried; send it without the array
+			// Only one job is being queried; send it as an object instead of an array
 			let jobObject = parseJobs(results)[0];
-
-			res.status(200).send({
-				data: jobObject,
-				message: `Job ${jobObject.job.job_id} successfully retrieved.`,
-			})
+			Server.sendOK(res, jobObject, "Job " + jobObject.job.job_id + " retrieved.");
 		} else {
-			res.status(400).send({data: null, message: "Job " + id + " does not exist"});
+			Server.send400(res, "Job " + id + " not found");
 		}
 	});
 });
 
 // job POST route for creating a new job
 router.post('/', (req, res) => {
-	if (!req.is('application/json')) {
-		res.status(400).send({ data: null, message: "Content-type must be application/json" });
+	if (!Server.isJSON(req)) {
+		Server.send400(res, "Content-type must be application/json");
 		return;
 	}
 
@@ -87,12 +84,12 @@ router.post('/', (req, res) => {
 		const siteQuery = `SELECT site_id FROM sites WHERE customer_id = '${customer_id}'`;
 		pool.query(siteQuery, (err, results, fields) => {
 			if (err) {
-				res.status(500).send({data: null, message: "Internal error in POST request while finding customer site id"});
+				Server.send500(res, "Internal error in POST request while finding customer site id: " + err.message);
 				return;
 			}
 
 			if (!results || results.length === 0) {
-				res.status(400).send({data: null, message: "Could not find site for customer"});
+				Server.send400(res, "Site for customer " + customer_id + " not found");
 				return;
 			}
 
@@ -102,34 +99,27 @@ router.post('/', (req, res) => {
 	}
 
 	// Callback query, called once site_id is defined
-	function callback(customer_id, site_id, start_time, end_time, name, description) {
+	const callback = (customer_id, site_id, start_time, end_time, name, description) => {
 		const query = `INSERT INTO jobs (customer_id, site_id, start_time, end_time, name, description) VALUES ` +
 			`('${customer_id}', '${site_id}', '${start_time}', '${end_time}', '${name}', '${description}') `;
 
 		pool.query(query, (err, results, fields) => {
 			if (err) {
-				const response = { data: null, message: err.message, }
-				res.status(500).send(response);
+				Server.send500(res, err.message);
 				return;
 			}
 
 			const { insertId } = results;
-			const job = { id: insertId, customer_id, site_id, start_time, end_time, name, description }
-			const response = {
-				data: job,
-				message: `Job ${insertId} successfully added.`
-			}
-			res.status(201).send(response);
+			const job = { job_id: insertId, customer_id, site_id, start_time, end_time, name, description }
+			Server.send(res, 201, job, "Job " + insertId + " created.");
 		});
 	}
-
 });
 
 // job PUT route for updating an existing job
 router.put('/:id', (req, res) => {
-	if (!req.is('application/json')) {
-		const response = { data: null, message: "Content-type must be application/json" };
-		res.status(400).send(response);
+	if (!Server.isJSON(req)) {
+		Server.sendJSONError(res);
 		return;
 	}
 
@@ -137,8 +127,7 @@ router.put('/:id', (req, res) => {
 	const query = `SELECT * FROM jobs WHERE job_id=${id} LIMIT 1`;
 	pool.query(query, (err, results, fields) => {
 		if (err) {
-			const response = { data: null, message: err.message, }
-			res.status(500).send(response);
+			Server.send500(res, err.message);
 			return;
 		}
 
@@ -157,13 +146,12 @@ router.put('/:id', (req, res) => {
 
 		pool.query(query, (err, results, fields) => {
 			if (err) {
-				const response = { data: null, message: err.message, };
-				res.status(500).send(response);
+				Server.send500(res, err.message);
 				return;
 			}
 
 			const job = {
-				id,
+				job_id,
 				customer_id,
 				site_id,
 				start_time,
@@ -172,10 +160,7 @@ router.put('/:id', (req, res) => {
 				description
 			};
 
-			res.status(201).send({
-				data: job,
-				message: "Job " + name + " successfully updated.",
-			});
+			Server.send(res, 201, job, "Job " + job_id + " updated.");
 		});
 	});
 });
@@ -186,24 +171,17 @@ router.delete('/:id', (req, res) => {
 	const query = `DELETE FROM jobs WHERE job_id=${id}`;
 	pool.query(query, (err, results, fields) => {
 		if (err) {
-			const response = { data: null, message: err.message };
-			res.status(500).send(response);
+			Server.send500(res, err.message);
 			return;
 		}
 
-		const response = {
-			data: null,
-			message: "Job with id: " + id + " successfully deleted.",
-		}
-		res.send(response);
+		Server.sendOK(res, null, "Job " + id + " deleted.");
 	});
 });
 
 // invalid /jobs/ route
 router.all('/*', function(req, res) {
-	res.status(400).send({
-		data: null, message: 'Route not found'
-	});
+	Server.send400(res, "Route not found");
 });
 
 function parseJobs(results) {
@@ -211,9 +189,7 @@ function parseJobs(results) {
 	* This is used in job GET requests (/jobs/ and /jobs{id}
 	*/
 
-	let jobs = [];
-	let prevIndex = -1;
-	results.forEach((e, index) => {
+
 		/*
 		Querying jobs is complicated because their information is spread amongst many tables:
 		Jobs relate to 1 customer, 1 site, 0 or many reports.
@@ -275,7 +251,9 @@ function parseJobs(results) {
 			}
 		  ]
         */
-
+	let jobs = [];
+	let prevIndex = -1;
+	results.forEach((e, index) => {
 		if (prevIndex > -1 && jobs[prevIndex].job.job_id === e.job_id) {
 			jobs[prevIndex].job.reports.push(formatReportsJSON(e));
 		} else {
