@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 
 import colors from "../config/colors";
 
-function JobItem({ title, subtitle, description, address, time, onPress }) {
+function JobItem({ jobData, onPress }) {
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.container}>
@@ -20,17 +20,17 @@ function JobItem({ title, subtitle, description, address, time, onPress }) {
                                 margin: 5,
                             }}
                         />
-                        <Text style={styles.time}>{time}</Text>
+                        <Text style={styles.time}>{jobData.job.start_time}</Text>
                     </View>
                     <Text style={styles.subtitle} numberOfLines={1}>
-                        {subtitle}
+                        {"subtitle"}
                     </Text>
                 </View>
                 <Text style={styles.title} numberOfLines={2}>
-                    {title}
+                    {jobData.job.name}
                 </Text>
                 <Text style={styles.details} numberOfLines={3}>
-                    {description}
+                    {jobData.job.description}
                 </Text>
 
                 <View style={styles.footer}>
@@ -40,7 +40,7 @@ function JobItem({ title, subtitle, description, address, time, onPress }) {
                             size={24}
                             color="dodgerblue"
                         />
-                        <Text style={styles.address}>{address}</Text>
+                        <Text style={styles.address}>{jobData.site.address}</Text>
                         <MaterialCommunityIcons
                             name="arrow-top-right-thick"
                             size={12}
