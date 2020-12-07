@@ -1,0 +1,3 @@
+Sep 28 - Oct 4
+Further research into how to use React Native
+Learning how components work

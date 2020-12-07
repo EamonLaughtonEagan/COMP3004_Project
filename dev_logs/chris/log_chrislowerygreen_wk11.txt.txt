@@ -1,0 +1,4 @@
+Nov 30 - Dec 6
+Created UserItem component
+Created UserItemScreen
+Working on UserItem interaction with API

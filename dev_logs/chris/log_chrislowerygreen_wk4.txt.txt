@@ -1,0 +1,2 @@
+Oct 12 - Oct 18
+Working on app layout (which screens connect with which) and navigation
