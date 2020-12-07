@@ -11,10 +11,17 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// Requests made to https://(endpoint)/dev/jobs are handled in ./routes/jobs.js
 app.use('/jobs', jobsRoute);
+
+// Requests made to https://(endpoint)/dev/reports are handled in ./routes/reports.js
 app.use('/users', usersRoute);
+
+// Requests made to https://(endpoint)/dev/sites are handled in ./routes/sites.js
 app.use('/sites', sitesRoute);
 
+
+// HEAD requests to root /dev/ folder by convention should send back information about using the API
 app.head('/', (req, res)=> {
     const response = {
         data: null,
