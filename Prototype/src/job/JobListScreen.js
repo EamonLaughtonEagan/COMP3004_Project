@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, Text } from "react-native";
 
-import { Jobs } from "../cache/Cache";
+import { Cache, Jobs } from "../cache/Cache";
 import Screen from "../components/Screen";
 import routes from "../navigation/routes";
 import JobItem from "./JobItem";
@@ -19,20 +19,42 @@ class JobListScreen extends React.Component {
         };
     }
 
-    loadJobs = async () => {
-        this.jobData = await Jobs.fetchJobs();
-        this.setState({ loaded: true });
-    };
+    refreshJobs(force = false) {
+        if (force || Date.now() - Cache.lastFetch > 60000 * 5) {
+            console.log("Refreshing job list...");
+            this.state.loaded = false;
+
+            Jobs.fetchJobs()
+                .then(() => {
+                    console.log("Done fetching jobs");
+
+                    // Render the screen
+                    this.setState({ loaded: true });
+                    this.forceUpdate();
+
+                    return Promise.resolve();
+                })
+                .catch((err) => {
+                    this.setState({ error: true });
+                    return Promise.reject(err);
+                });
+        } else {
+            console.log(
+                "Skipped fetch; jobs were loaded less than 5 minutes ago."
+            );
+
+            if (!this.state.loaded) {
+                console.log("Skipped re-render; screen is already loaded");
+                this.setState({ loaded: true });
+                this.forceUpdate();
+            }
+
+            return Promise.resolve();
+        }
+    }
 
     async componentDidMount() {
-        const start = new Date();
-
-        await this.loadJobs();
-        const end = new Date();
-        console.log("Jobs loaded (" + (end - start) + "ms)");
-
-        // Render the screen
-        this.forceUpdate();
+        return this.refreshJobs(false);
     }
 
     render() {
@@ -43,7 +65,7 @@ class JobListScreen extends React.Component {
         return (
             <Screen>
                 <FlatList
-                    data={this.jobData}
+                    data={Cache.jobs}
                     keyExtractor={(d) => d.job.job_id.toString()}
                     renderItem={({ item }) => (
                         <JobItem
