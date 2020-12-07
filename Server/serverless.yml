@@ -50,3 +50,9 @@ functions:
       - http:
           path: sites/{id}
           method: get
+      - http:
+          path: customers/
+          method: get
+      - http:
+          path: customers/
+          method: post

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const jobsRoute = require("./routes/jobs")
 const usersRoute = require("./routes/users")
 const sitesRoute = require("./routes/sites")
+const customersRoute = require("./routes/customers")
 
 const app = express()
 
@@ -19,6 +20,9 @@ app.use('/users', usersRoute);
 
 // Requests made to https://(endpoint)/dev/sites are handled in ./routes/sites.js
 app.use('/sites', sitesRoute);
+
+// Requests made to https://(endpoint)/dev/customers are handled in ./routes/customers.js
+app.use("/customers", customersRoute);
 
 
 // HEAD requests to root /dev/ folder by convention should send back information about using the API
