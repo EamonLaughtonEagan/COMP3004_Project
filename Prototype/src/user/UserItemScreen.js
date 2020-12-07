@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList, StyleSheet } from "react-native";
 
 import Screen from "../components/AppScreen";
-import UserItem from "../components/UserItem";
+import UserItem from "./UserItem";
 //import routes from "../navigation/routes";
 
 const datas = JSON.parse(
