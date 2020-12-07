@@ -1,4 +1,4 @@
-export class Server {
+class Server {
     static send400 = (res, message) => {
         Server.send(res, 400, null, message);
     }
@@ -25,5 +25,6 @@ export class Server {
     static isJSON = (req) => {
         return req.is("application/json");
     }
-
 }
+
+module.exports = {Server}

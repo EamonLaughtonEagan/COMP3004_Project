@@ -33,74 +33,71 @@
 
  */
 
-const formatJobFullJSON = (e) => {
-    return {
-        job: formatJobJSON(e),
-        customer: formatCustomerJSON(e),
-        site: formatSiteJSON(e)
+class jsonConfig {
+    static formatJobFullJSON = (e) => {
+        return {
+            job: jsonConfig.formatJobJSON(e),
+            customer: jsonConfig.formatCustomerJSON(e),
+            site: jsonConfig.formatSiteJSON(e)
+        }
     }
+
+    static formatJobJSON = (e) => {
+        let obj = {
+            job_id: e.job_id,
+            site_id: e.site_id,
+            customer_id: e.customer_id,
+            name: e.name,
+            description: e.description,
+            start_time: e.start_time,
+            end_time: e.end_time,
+
+            reports: []
+        }
+
+        if (e.report_id) {
+            obj.reports.push(jsonConfig.formatReportsJSON(e));
+        }
+
+        return obj;
+    }
+
+    static formatReportsJSON = (e) => {
+        if (!e.report_id) {
+            return;
+        }
+
+        return {
+            report_id: e.report_id,
+            user_id: e.user_id,
+            job_id: e.job_id,
+            status_id: e.status_id,
+            text: e.text
+        }
+    }
+
+    static formatCustomerJSON = (e) => {
+        return {
+            customer_id: e.customer_id,
+            site_id: e.site_id,
+            first_name: e.first_name,
+            last_name: e.last_name,
+            email: e.email,
+            cell: e.cell,
+            home: e.home
+        }
+    }
+
+    static formatSiteJSON = (e) => {
+        return {
+            site_id: e.site_id,
+            customer_id: e.customer_id,
+            address: e.address,
+            volume: e.volume,
+            type: e.type
+        }
+    }
+
 }
 
-const formatJobJSON = (e) => {
-    let obj = {
-        job_id: e.job_id,
-        site_id: e.site_id,
-        customer_id: e.customer_id,
-        name: e.name,
-        description: e.description,
-        start_time: e.start_time,
-        end_time: e.end_time,
-
-        reports: []
-    }
-
-    if (e.report_id) {
-        obj.reports.push(formatReportsJSON(e));
-    }
-
-    return obj;
-}
-
-const formatReportsJSON = (e) => {
-    if (!e.report_id) {
-        return;
-    }
-
-    return {
-        report_id: e.report_id,
-        user_id: e.user_id,
-        job_id: e.job_id,
-        status_id: e.status_id,
-        text: e.text
-    }
-}
-
-const formatCustomerJSON = (e) => {
-    return {
-        customer_id: e.customer_id,
-        site_id: e.site_id,
-        first_name: e.first_name,
-        last_name: e.last_name,
-        email: e.email,
-        cell: e.cell,
-        home: e.home
-    }
-}
-
-const formatSiteJSON = (e) => {
-    return {
-        site_id: e.site_id,
-        customer_id: e.customer_id,
-        address: e.address,
-        volume: e.volume,
-        type: e.type
-    }
-}
-
-module.exports = {
-    formatJobJSON,
-    formatReportsJSON,
-    formatCustomerJSON,
-    formatSiteJSON,
-    formatJobFullJSON,
-}
+module.exports = {jsonConfig}
