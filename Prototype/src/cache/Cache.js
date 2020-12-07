@@ -42,7 +42,7 @@ const fetchUsers = async () => {
     } catch (error) {
         console.error("Error while fetching users: " + error.message);
     }
-}
+};
 
 const getJobs = () => {
     return jobs;
@@ -56,5 +56,11 @@ const getUsers = () => {
     return users;
 };
 
-module.exports = {fetchJobs, fetchCustomers, fetchUsers,
-    getJobs, getCustomers, getUsers };
+module.exports = {
+    fetchJobs,
+    fetchCustomers,
+    fetchUsers,
+    getJobs,
+    getCustomers,
+    getUsers,
+}

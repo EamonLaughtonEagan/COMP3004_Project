@@ -20,10 +20,12 @@ function JobItem({ jobData, onPress }) {
                                 margin: 5,
                             }}
                         />
-                        <Text style={styles.time}>{jobData.job.start_time}</Text>
+                        <Text style={styles.time}>
+                            {jobData.job.start_time}
+                        </Text>
                     </View>
                     <Text style={styles.subtitle} numberOfLines={1}>
-                        {"subtitle"}
+                        subtitle
                     </Text>
                 </View>
                 <Text style={styles.title} numberOfLines={2}>
@@ -40,7 +42,9 @@ function JobItem({ jobData, onPress }) {
                             size={24}
                             color="dodgerblue"
                         />
-                        <Text style={styles.address}>{jobData.site.address}</Text>
+                        <Text style={styles.address}>
+                            {jobData.site.address}
+                        </Text>
                         <MaterialCommunityIcons
                             name="arrow-top-right-thick"
                             size={12}

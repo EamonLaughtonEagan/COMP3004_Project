@@ -2,7 +2,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
-import AccountScreen from "../screens/AccountScreen";
 import AccountNavigator from "./AccountNavigator";
 import JobListNavigator from "./JobListNavigator";
 import routes from "./routes";
