@@ -7,6 +7,7 @@ const endpointCustomers = endpoint + "customers/";
 const jsonType = "application/json";
 
 export class Cache {
+    static lastFetch = null;
     static initialized = false;
 
     static jobs = [];
@@ -15,36 +16,34 @@ export class Cache {
 
     static initialize = () => {
         console.log("Initializing cache...");
-        const userTime = Date.now();
+        Cache.lastFetch = Date.now();
 
         Users.fetchUsers().then((r) => {
             console.log(
                 "Fetched " +
                     Cache.users.length +
                     " users (" +
-                    (Date.now() - userTime) +
+                    (Date.now() - Cache.lastFetch) +
                     "ms)"
             );
         });
 
-        const customerTime = Date.now();
         Customers.fetchCustomers().then((r) => {
             console.log(
                 "Fetched " +
                     Cache.customers.length +
                     " customers (" +
-                    (Date.now() - customerTime) +
+                    (Date.now() - Cache.lastFetch) +
                     "ms)"
             );
         });
 
-        const jobsTime = Date.now();
         Jobs.fetchJobs().then((r) => {
             console.log(
                 "Fetched " +
                     Cache.jobs.length +
                     " jobs (" +
-                    (Date.now() - jobsTime) +
+                    (Date.now() - Cache.lastFetch) +
                     "ms)"
             );
         });
@@ -99,13 +98,7 @@ export class Users {
     };
 
     static findUser = (user_id) => {
-        Cache.users.forEach((u) => {
-            if (u.user_id === user_id) {
-                return u;
-            }
-        });
-
-        return null;
+        return Cache.users.find((u) => u.user_id === user_id);
     };
 
     static getUsers = () => {
