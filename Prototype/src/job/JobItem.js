@@ -3,6 +3,19 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 
 import colors from "../config/colors";
+import {
+    timeMinHour,
+    getReportIcon,
+    getWorstReport,
+    timeShortRelativeNow,
+} from "./JobHelper";
+
+/*
+    status_id       text
+    1               ok
+    2               minor problem
+    3               major problem
+ */
 
 function JobItem({ jobData, onPress }) {
     return (
@@ -10,22 +23,13 @@ function JobItem({ jobData, onPress }) {
             <View style={styles.container}>
                 <View style={styles.titleContainer}>
                     <View style={{ flexDirection: "row" }}>
-                        <MaterialCommunityIcons
-                            name="clock-outline"
-                            size={24}
-                            color={colors.secondary}
-                            style={{
-                                flexDirection: "column",
-                                alignSelf: "center",
-                                margin: 5,
-                            }}
-                        />
+                        {getReportIcon(getWorstReport(jobData))}
                         <Text style={styles.time}>
-                            {jobData.job.start_time}
+                            {timeMinHour(jobData.job.start_time)}
                         </Text>
                     </View>
                     <Text style={styles.subtitle} numberOfLines={1}>
-                        subtitle
+                        {timeShortRelativeNow(jobData.job.start_time)}
                     </Text>
                 </View>
                 <Text style={styles.title} numberOfLines={2}>

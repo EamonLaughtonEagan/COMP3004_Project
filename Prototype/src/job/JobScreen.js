@@ -1,8 +1,9 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 
 import Screen from "../components/AppScreen";
+import { timeShortRelativeNow } from "./JobHelper";
+import { ReportList } from "./ReportList";
 
 /*
     Known issue:
@@ -10,18 +11,45 @@ import Screen from "../components/AppScreen";
     TODO: Fix this
  */
 
+const dummyReports = [
+    {
+        report_id: 4,
+        user_id: 2,
+        job_id: 1,
+        status_id: 2,
+        text:
+            "This is a dummy report, created in JobScreen.js. This report has a status id of 2, which flags it as a minor problem.",
+    },
+    {
+        report_id: 5,
+        user_id: 2,
+        job_id: 1,
+        status_id: 1,
+        text:
+            "This is a second dummy report. This report's status id is 1, which means OK!",
+    },
+    {
+        report_id: 6,
+        user_id: 2,
+        job_id: 1,
+        status_id: 3,
+        text:
+            "This is a report with a major problem. The icons are rendered with JobHelper.getReportIcon(getWorstReport())",
+    },
+];
+
 function JobScreen({ route }) {
     const jobData = route.params;
     const job = jobData.job;
     const customer = jobData.customer;
     const site = jobData.site;
-    const reports = jobData.reports;
+    // TODO: Once reports are styled, use this to render reports
+    // const reports = job.reports;
 
     return (
         <Screen>
             <View style={styles.container}>
                 {/*Title container*/}
-
                 <View style={styles.titleContainer}>
                     <View>
                         <Text style={styles.title} numberOfLines={2}>
@@ -33,39 +61,22 @@ function JobScreen({ route }) {
                         <Text style={styles.soft}>{site.address}</Text>
                     </View>
                     <View style={styles.timeContainer}>
-                        <Text style={styles.soft}>subtitle</Text>
+                        <Text style={styles.soft}>
+                            {timeShortRelativeNow(job.start_time)}
+                        </Text>
                     </View>
                 </View>
 
-                {/*
-                Details container below
-                */}
+                {/* Details container */}
                 <View style={styles.detailsContainer}>
                     <Text style={styles.details} numberOfLines={10}>
                         {job.description}
                     </Text>
                 </View>
-                {/*Footer*/}
-                <View style={styles.footer}>
-                    <MaterialCommunityIcons
-                        name="alert-circle-outline"
-                        size={24}
-                        color="tomato"
-                        style={{
-                            margin: 5,
-                            flexDirection: "column",
-                            alignSelf: "center",
-                        }}
-                    />
-                    <Text
-                        style={{
-                            textAlignVertical: "center",
-                            color: "tomato",
-                        }}
-                    >
-                        Report job problem
-                    </Text>
-                </View>
+
+                {/* Footer container */}
+
+                <ReportList reports={dummyReports} />
             </View>
         </Screen>
     );
@@ -98,12 +109,7 @@ const styles = StyleSheet.create({
     detailsContainer: {
         margin: 10,
     },
-    footer: {
-        padding: 5,
-        borderTopWidth: 1,
-        flexDirection: "row",
-        justifyContent: "flex-end",
-    },
+
     image: {
         width: "100%",
         height: 200,

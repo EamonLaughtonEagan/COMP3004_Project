@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { FlatList, Text } from "react-native";
 
-import { fetchJobs } from "../cache/Cache";
-import JobItem from "../components/JobItem";
+import { Jobs } from "../cache/Cache";
 import Screen from "../components/Screen";
 import routes from "../navigation/routes";
+import JobItem from "./JobItem";
 
 class JobListScreen extends React.Component {
     jobData = [];
@@ -20,7 +20,7 @@ class JobListScreen extends React.Component {
     }
 
     loadJobs = async () => {
-        this.jobData = await fetchJobs();
+        this.jobData = await Jobs.fetchJobs();
         this.setState({ loaded: true });
     };
 
