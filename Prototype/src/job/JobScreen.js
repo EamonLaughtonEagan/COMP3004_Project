@@ -36,6 +36,17 @@ const dummyReports = [
         text:
             "This is a report with a major problem. The icons are rendered with JobHelper.getReportIcon(getWorstReport())",
     },
+    {
+        report_id: 7,
+        user_id: 2,
+        job_id: 1,
+        status_id: 0,
+        text:
+            "This is a fourth report, with status_id of 0. Status_id of 0 is not defined, but in the JobList screen, jobs " +
+            "WITHOUT reports will have the clock icon. \n" +
+            "I don't expect many jobs to have this many reports, this is just here to make sure really long " +
+            "reports (and a lot of them) still display correctly.",
+    }
 ];
 
 function JobScreen({ route }) {
@@ -91,12 +102,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
     },
     container: {
-        marginBottom: 20,
+        marginBottom: 2,
         overflow: "hidden",
         justifyContent: "space-between",
         borderColor: "dodgerblue",
         borderRadius: 5,
-        paddingVertical: 20,
+        paddingTop: 5,
         paddingHorizontal: 15,
     },
     soft: {
