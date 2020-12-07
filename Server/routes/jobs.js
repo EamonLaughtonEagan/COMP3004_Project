@@ -1,11 +1,10 @@
-import {Server} from "../configs/server";
+const {Server} = require("../configs/server");
 
 const express = require('express')
 const pool = require('../configs/dbConfig')
 const router = express.Router();
 
-const {formatCustomerJSON, formatSiteJSON, formatJobJSON,
-	formatJobFullJSON, formatReportsJSON} = require("../configs/jsonConfig")
+const {jsonConfig} = require('../configs/jsonConfig')
 
 
 // job GET route for querying all jobs
@@ -26,7 +25,7 @@ router.get('/', (req, res) => {
 		ORDER BY job_id
 		`
 
-	pool.query(jobsQuery, (err, results, fields) => {
+	pool.query(jobsQuery, (err, results) => {
 		if (err) {
 			Server.send500(res, err.message);
 			return;
@@ -51,13 +50,12 @@ router.get('/:id', (req, res) => {
 		LEFT OUTER JOIN reports AS r ON r.job_id = j.job_id
 		WHERE j.job_id = '${id}'`;
 
-	pool.query(query, (err, results, fields) => {
+	pool.query(query, (err, results) => {
 		if (err) {
 			Server.send500(err.message);
 			return;
 		}
 
-		let response;
 		if (results) {
 			// Only one job is being queried; send it as an object instead of an array
 			let jobObject = parseJobs(results)[0];
@@ -77,12 +75,29 @@ router.post('/', (req, res) => {
 
 	let { customer_id, site_id, start_time, end_time, name, description } = req.body;
 
+	// Callback query, called once site_id is defined
+	const callback = (customer_id, site_id, start_time, end_time, name, description) => {
+		const query = `INSERT INTO jobs (customer_id, site_id, start_time, end_time, name, description) VALUES ` +
+			`('${customer_id}', '${site_id}', '${start_time}', '${end_time}', '${name}', '${description}') `;
+
+		pool.query(query, (err, results) => {
+			if (err) {
+				Server.send500(res, err.message);
+				return;
+			}
+
+			const { insertId } = results;
+			const job = { job_id: insertId, customer_id, site_id, start_time, end_time, name, description }
+			Server.send(res, 201, job, "Job " + insertId + " created.");
+		});
+	}
+
 	// If site id is not defined, query it
 	if (site_id) {
 		callback(customer_id, site_id, start_time, end_time, name, description);
 	} else {
 		const siteQuery = `SELECT site_id FROM sites WHERE customer_id = '${customer_id}'`;
-		pool.query(siteQuery, (err, results, fields) => {
+		pool.query(siteQuery, (err, results) => {
 			if (err) {
 				Server.send500(res, "Internal error in POST request while finding customer site id: " + err.message);
 				return;
@@ -98,22 +113,7 @@ router.post('/', (req, res) => {
 		});
 	}
 
-	// Callback query, called once site_id is defined
-	const callback = (customer_id, site_id, start_time, end_time, name, description) => {
-		const query = `INSERT INTO jobs (customer_id, site_id, start_time, end_time, name, description) VALUES ` +
-			`('${customer_id}', '${site_id}', '${start_time}', '${end_time}', '${name}', '${description}') `;
 
-		pool.query(query, (err, results, fields) => {
-			if (err) {
-				Server.send500(res, err.message);
-				return;
-			}
-
-			const { insertId } = results;
-			const job = { job_id: insertId, customer_id, site_id, start_time, end_time, name, description }
-			Server.send(res, 201, job, "Job " + insertId + " created.");
-		});
-	}
 });
 
 // job PUT route for updating an existing job
@@ -125,7 +125,7 @@ router.put('/:id', (req, res) => {
 
 	const { id } = req.params;
 	const query = `SELECT * FROM jobs WHERE job_id=${id} LIMIT 1`;
-	pool.query(query, (err, results, fields) => {
+	pool.query(query, (err, results) => {
 		if (err) {
 			Server.send500(res, err.message);
 			return;
@@ -144,7 +144,7 @@ router.put('/:id', (req, res) => {
 		console.log("spread: \ncustomer_id " + customer_id + " site_id " + site_id);
 		console.log("params " + JSON.stringify(req.params));
 
-		pool.query(query, (err, results, fields) => {
+		pool.query(query, (err) => {
 			if (err) {
 				Server.send500(res, err.message);
 				return;
@@ -169,13 +169,17 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
 	const { id } = req.params;
 	const query = `DELETE FROM jobs WHERE job_id=${id}`;
-	pool.query(query, (err, results, fields) => {
+	pool.query(query, (err, results) => {
 		if (err) {
 			Server.send500(res, err.message);
 			return;
 		}
 
-		Server.sendOK(res, null, "Job " + id + " deleted.");
+		if (results) {
+			Server.sendOK(res, null, "Job " + id + " deleted.");
+		} else {
+			Server.send(res, 400, results, "Unable to delete job. See body for query results.");
+		}
 	});
 });
 
@@ -253,11 +257,11 @@ function parseJobs(results) {
         */
 	let jobs = [];
 	let prevIndex = -1;
-	results.forEach((e, index) => {
+	results.forEach((e) => {
 		if (prevIndex > -1 && jobs[prevIndex].job.job_id === e.job_id) {
-			jobs[prevIndex].job.reports.push(formatReportsJSON(e));
+			jobs[prevIndex].job.reports.push(jsonConfig.formatReportsJSON(e));
 		} else {
-			jobs.push(formatJobFullJSON(e));
+			jobs.push(jsonConfig.formatJobFullJSON(e));
 			prevIndex++;
 		}
 	});

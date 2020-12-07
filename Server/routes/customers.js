@@ -1,4 +1,4 @@
-import {Server} from "../configs/server";
+const {Server} = require("../configs/server")
 
 const express = require('express')
 const pool = require('../configs/dbConfig')
