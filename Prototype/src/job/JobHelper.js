@@ -4,7 +4,7 @@ import React from "react";
 import colors from "../config/colors";
 
 export function getReportStatusText(status_id) {
-    switch(status_id) {
+    switch (status_id) {
         case 1: {
             return "OK";
         }
@@ -44,17 +44,27 @@ export function getWorstReport(jobObject) {
 /**
  * Choose an icon based on a report's status_id
  * @param report The report (null safe)
+ * @param styles Optional style to apply to icon
  * @returns {JSX.Element}   A MaterialCommunityIcon
  */
-export function getReportIcon(report) {
+
+/*
+function AppText({ children, style, ...otherProps }) {
+    return (
+        <Text style={[defaultStyles.text, style]} {...otherProps}>
+            {children}
+        </Text>
+    );
+}
+ */
+export function getReportIcon(
+    report,
+    iconStyle = { flexDirection: "column", alignSelf: "center", margin: 5 }
+) {
     let iconName = "clock-outline";
     let iconColor = colors.secondary;
     const iconSize = 24;
-    const iconStyle = {
-        flexDirection: "column",
-        alignSelf: "center",
-        margin: 5,
-    };
+
 
     if (report !== null) {
         if (report.status_id === 1) {
@@ -65,7 +75,7 @@ export function getReportIcon(report) {
             iconColor = colors.secondary;
         } else if (report.status_id === 3) {
             iconName = "alert-box-outline";
-            iconColor = "tomato";
+            iconColor = "firebrick";
         }
     }
 
@@ -78,7 +88,6 @@ export function getReportIcon(report) {
         />
     );
 }
-
 
 let date = null;
 
@@ -190,12 +199,10 @@ export function timeDiffShort(ms) {
     }
 }
 
-
 export function timeShortRelativeNow(str) {
     const date = new Date(str);
     const now = new Date();
     const diff = date - now;
 
     return timeDiffShortRelative(diff);
-
 }
