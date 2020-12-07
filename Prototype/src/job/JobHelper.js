@@ -6,7 +6,7 @@ import colors from "../config/colors";
 export function getReportStatusText(status_id) {
     switch (status_id) {
         case 1: {
-            return "OK";
+            return "Completed";
         }
         case 2: {
             return "Minor problem";
