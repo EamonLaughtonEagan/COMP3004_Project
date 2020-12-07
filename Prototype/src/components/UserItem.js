@@ -7,7 +7,7 @@ function UserItem({ email, first_name, last_name, permission_name, onPress }) {
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.container}>
-                <View style={styles.titleContainer}>
+                <View style={styles.nameContainer}>
                     <Text style={styles.first_name}>{first_name}</Text>
                     <Text style={styles.last_name}>{last_name}</Text>
                 </View>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginLeft: 15,
     },
-    titleContainer: {
+    nameContainer: {
         borderBottomWidth: 2,
         borderBottomColor: "grey",
         flexDirection: "row",
