@@ -5,57 +5,19 @@ import Screen from "../components/AppScreen";
 import UserItem from "../components/UserItem";
 //import routes from "../navigation/routes";
 
-const datas = [
-    {
-        id: 1,
-        first_name: "Chris",
-        last_name: "Green",
-        email: "christlg@rogers.com",
-        permission_name: "Supervisor",
-    },
-    {
-        id: 2,
-        first_name: "Dummy",
-        last_name: "Info",
-        email: "christlg@rogers.com",
-        permission_name: "Supervisor",
-    },
-    {
-        id: 3,
-        first_name: "Happy",
-        last_name: "Birthday",
-        email: "christlg@rogers.com",
-        permission_name: "Supervisor",
-    },
-    {
-        id: 4,
-        first_name: "Eamon",
-        last_name: "Red",
-        email: "eemstar@rogers.com",
-        permission_name: "Guest",
-    },
-    {
-        id: 5,
-        first_name: "Noura",
-        last_name: "Green",
-        email: "nono@rogers.com",
-        permission_name: "Supervisor",
-    },
-    {
-        id: 6,
-        first_name: "Trevor",
-        last_name: "Blue",
-        email: "trevg@rogers.com",
-        permission_name: "Tech",
-    },
-];
+const datas = JSON.parse(
+    '{"data":[{"user_id":2,"permission_id":4,"email":"trevori","first_name":"trevor","last_name":"incze","permission_name":"admin"},{"user_id":3,"permission_id":3,"email":"bob.d","first_name":"bob","last_name":"donut","permission_name":"supervisor"},{"user_id":4,"permission_id":3,"email":"jbat","first_name":"jordan","last_name":"battram","permission_name":"supervisor"},{"user_id":5,"permission_id":2,"email":"troy.tech","first_name":"troy","last_name":"smith","permission_name":"tech"}],"message":"All users successfully retrieved."}'
+);
 
 function UserItemScreen({ navigation }) {
     return (
         <Screen>
             <FlatList
+                style={{
+                    width: "100%",
+                }}
                 data={datas}
-                keyExtractor={(d) => d.id.toString()}
+                keyExtractor={(d) => d.user_id.toString()}
                 renderItem={({ item }) => (
                     <UserItem
                         first_name={item.first_name}
