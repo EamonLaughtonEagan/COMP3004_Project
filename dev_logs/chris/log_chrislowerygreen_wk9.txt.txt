@@ -1,0 +1,3 @@
+Nov 16 - Nov 22
+Working on D3; completed Template Design Pattern description and task assignments
+Helped edit and work on other architectural style descriptions in relation to project

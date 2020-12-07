@@ -1,0 +1,3 @@
+Oct 5 - Oct 11
+Setting up coding environment with other group members (plugins for VisualStudio, eslint, prettier, etc...) for consistency
+Setting up the development environment with other group members (emulator, expo on phone, etc...)

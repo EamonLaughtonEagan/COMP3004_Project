@@ -1,0 +1,4 @@
+Nov 2 - Nov 8
+Researching different architectural patterns to see which our app fits
+Helping complete demo description
+Finalizing aspects of app we want to present, which parts need dummy data

@@ -1,0 +1,2 @@
+Sep 21 - Sep 27
+Research into how to use React Native/GitHub

@@ -1,0 +1,214 @@
+Dev Logs
+Trevor Incze
+101003692
+
+Sep 14 9:00AM: D0 Project groups
+Sep 20 9:00PM: D1 Project Proposal
+
+
+
+------
+Sep 27
+This week, we discussed how to code our app. Initially, we considered the following:
+    - Android platform: Less used in North America, but far easier to personally learn because of my experience using Java
+    - iOS platform: More common in North America, but it's coded in Objective-C or Swift, neither of which I have experience with.
+
+Because we plan for our app to see use at a company, cross-platform support with one code base is desired.
+We discussed possible frameworks that could help make this happen. The only complete solutions are React Native or Flutter.
+Both accomplish the same goal of having one code base for different platforms, but there are some differences we discussed:
+    Flutter: DART code is turned into native machine code of the platform it is running.
+        - It has promise, but a general skepticism exists in discussions I read online.
+        - It is still new compared to React Native, and lacks some documentation
+    React Native: A Javascript engine runs on the phone. JSX (Javascript XML) code provides CSS-like user interface styling
+        - My initial impression looking at examples is that it's complicated, even though it is "Javascript"
+        - However, it is very well documented. Lots of examples of code, and extensive website documentation.
+
+The use of either of these complicates the app because we need to learn a new language.
+However, we eventually decided on React Native for two key reasons:
+    1. React Native is better documented, and has been used more by others.
+    2. React Native is based on Javascript, which most of us have at least some experience in.
+
+While using React Native adds a layer of difficulty to the development of the app, it is a decision that already has benefits.
+As a group, we don't have all iPhones or all Android phones, which would normally be a problem. We will be able to test our app on
+the different platforms we use.
+
+------
+Oct 4
+This week we spent time learning the "Hello World" app for React Native. This proved to be a lot more difficult than expected,
+and we didn't end up getting anywhere. I personally faced significant difficulties with the following:
+    - Running an emulator. This proved to be immensely difficult. I continuously got the error
+        "Unable to locate ABD" from Android Studio. Several hours of troubleshooting got me nowhere.
+
+I was not able to run the Hello World app this week because of this - React Native forces the use of an emulator, and iPhone
+emulators are not possible because I do not have a Mac.
+
+
+------
+Oct 11
+Since last week, I managed to catch up with my group members who made the Hello World app.
+
+This was a part of the work done towards standardizing the development environment for everyone.
+I discovered Expo, which is a tool for developing apps made with React Native. It allows you to run apps on your phone.
+It has what is called "hot reloading", which allows you to change code and see the changes on your phone right away.
+In practice this appears to work okay, sometimes it refreshes but doesn't change. Sometimes the app needs to be reloaded completely.
+
+Some experimenting with React Native basics was done, but a significant amount of time was being wasted on minor errors
+such as forgetting imports, misplaced brackets, etc. JSX is very picky about XML tags, and the complicated brackets
+added to this difficulty.
+
+Because of these difficulties, I tried to convert our project to Typescript, but eventually abandoned this idea as my IDE
+would not cooperate. As an alternative, I managed to get ESLint to work with a configuration file taken from Expo's
+documentation. At this point, the minor syntax errors causing builds to fail were eliminated. Instead of wasting two
+minutes for the app to boot only to find out it wouldn't run, errors can be seen directly in the editor.
+
+Significant time was put into configuring ESLint so it would work on the computers of my group members as well.
+Prettier was also configured on top of ESLint to give us a standardized style (whitespace, tabs vs spaces, etc.).
+I walked group members through how to configure ESLint and Prettier with their IDEs. ESLint appears to work for them,
+but Prettier does not. This isn't a huge issue because I can just run a command to stylize all files they change anyway.
+
+------
+Oct 18
+With Expo, ESLint, and Prettier configured, our group is finally in a position to start programming.
+Eamon and I started rough drafts of the layout of the app. These included a login screen, a job list screen,
+and some basic ideas of how the app will navigate between them.
+
+
+------
+Oct 25
+Work started on some basic screens. Because we will eventually be using a server that holds all of the data our app
+will use, I started implementing the Job List screen with dummy Javascript objects.
+
+React Native has turned out to be difficult to code in, despite all the tools we are using to make things smoother.
+One of the hardest parts of the job list screen is implementing it in a future-proof way. Time spent creating
+interfaces will be wasted if it will not work with an arbitrary number of jobs, since any number may be displayed.
+
+By nature of the app (in theory), there could be 100 jobs that all need to be listed. There could be 0. The job
+list screen must re-use the same styles with different variables (job name, customer name, time, etc.).
+The solution ended up being to use a component that accepts variables and stylizes them the same way.
+See: Prototype/src/components/JobItem, and Prototype/src/screens/JobListScreen.
+
+How to make each job clickable will be my focus next week.
+
+------
+Nov 01
+
+Significant time this week was put towards two main things:
+    1. Making JobScreen (Each Job in JobListScreen must be clickable, and take the user to a new screen with an expanded
+        view of that job)
+    2. Making the app navigable between screens. So far, screens are created and stylized by rendering them in the "main"
+        function of App.js - no navigation is possible between them.
+
+Despite making Navigation a focus this week, not much progress was made except for stylizing what the JobScreen will look
+like. The functionality of the screen is not there - it is just a screen that renders properly when given parameters like
+name, description, time, etc. of the job.
+
+------
+Nov 08 - Prototype Demo due 9:00PM
+This week, the prototype was completed in time for the demonstration. My sole focus this week was implementing Navigation
+between screens, as it is critical for the demo. I spent a few days linking two screens together with buttons, and finally figured out how to
+link everything together.
+
+Once Navigation was "solved", making Job items clickable within in the JobScreen was much easier, and the basic
+functionality of the app was finally ready for the demo. I spent another day making the app look cleaning, including a
+basic background gradient behind all screens.
+
+Navigation is currently done in a bit of a hacky way, and needs improvement. But it is read
+
+------
+Nov 15
+This week, I took a slight break to focus on other classes. I did some basic research towards what will go into the
+next deliverable with my group.
+
+
+------
+Nov 22
+Discussed the third deliverable with my group; we have already implemented quite a few relevant architectures, so
+writing about it was not too difficult.
+
+I will need to start work on the server next week; it is still only theory at this point, but I know enough about it
+to complete this deliverable.
+
+------
+Nov 29
+A significant amount of my time this week went into researching how to implement the client-server model. Initially,
+I wanted to avoid renting a server myself as they are quite expensive, and overkill for our purposes. The server will
+host a MySQL database, and a NodeJS server that handles API requests, routing them to the appropriate database query.
+
+While I knew the general model going into this week, at the time I didn't realize how much effort was really required.
+I settled on using Amazon Web Services to host, based on the word of a full stack developer I talked to a few months
+ago.
+
+Prior to this week, I had no knowledge of AWS. I was able to set up a MySQL server with how I remember doing it
+this past summer. The following tables best describe structure of the database:
+- Jobs table
+    - Job name (Ie. "Pool cleaning")
+    - Job description
+    - Job start time and end time
+- Reports table
+    Each row is text written by the technician, describing what happened at that job
+    - Each report corresponds to a single job
+    - Each job can have multiple reports
+    - Reports can be flagged (OK or NOT OK) - indicating if rescheduling is needed
+- Customers table
+    Each row is a customer with their name, email, phone number, etc.
+- Sites table
+    Each row is a pool or a hot tub with a physical address, and properties like water volume)
+    - Each row is a "site" belonging to a single customer
+- Misc tables
+    - "Consumables" - billable materials that can be added to job reports
+    - Consumable data types (kilograms, grams, litres, units) meant to measure how much of each consumable is used
+    - User permission group names (supervisor, technician, etc)
+
+The database is not simple because each "job" that will be displayed in the app will actually have all of the information
+culminated together and displayed appropriately. For example, every job must have a customer, a site, and 0-N reports.
+
+From here I spent a painful amount of time learning about connecting the database to Lambda and API Gateway.
+
+While the code I wrote for the server this week may look basic, the configuration done behind the scenes was where I
+spent most of my time. This was the most painful learning experience I have ever had programming; I spent three full
+days getting nowhere. Eventually I discovered Serverless CLI, a command line tool that takes some basic configuration
+and then deploys your code to Amazon's servers.
+
+While it sounds simple, my configuration of MySQL in AWS's RDS and NodeJS in AWS's Lambda was niche enough that I couldn't
+find help online. I finally figured it out myself and started work on the API, slowly getting it to work.
+
+The API will eventually need to have all of the following functionality for our app to work as expected:
+- GET request of ALL jobs, including the corresponding customer, site, and report information
+- POST request to create new jobs
+- PUT request to edit existing jobs
+- DELETE request to delete jobs
+
+The same requirements exist for every other resource: Customers, app users, reports, sites, etc.
+
+At the end of this week I had basic GET and POST requests working for jobs. The rest will go much faster as I will be able to
+add resources with similar formatting.
+
+
+-----
+Dec 06 9:00PM: D4 Project Presentation
+
+Early this week I nearly finished the API, with some difficulty. One main problem I ran into was making job GET requests return
+ALL relevant information. Querying just the "jobs" table in the database is not enough - it would include all the relevant
+customer id, site id, etc. for each job, but the app needs more to display these things correctly. If the app were to query
+this information seperately, it would work. But the network traffic would increase significantly. Instead, I changed the
+query to fetch ALL of this information in one statement, with a few join clauses. Since jobs can have multiple reports,
+there was some difficulty querying the database to include these in one statement. In the end, I settled on this:
+
+(simplified)
+SELECT * from jobs INNER JOIN customers INNER JOIN sites LEFT OUTER JOIN reports
+
+From here, each row of the resulting select statement can be parsed into a structured job object which will then be returned
+to the app.
+
+Besides the API, I also worked with group members to finalize the user interface for the demo. The app was missing significant
+portions of the screen, and some sacrifices were made to the functionality of our app to have it ready in time for the demo.
+
+For the demo, the app includes a welcome screen, login screen, job list screen, individual job screen, and job creation screen.
+Job reporting is also now possible within the individual job screen, where previous reports can now be seen.
+A user list screen has been implemented, and a refresh system has been added to the job list screen.
+
+Because of the requirements of programming the server side of things for this project, we did not get as much done as
+I had hoped. Each function of the app had to be coded to work with the server to keep other clients up to date; this more
+than doubled the time it took to make just the app by itself, and significantly slowed down the last
+few weeks of development.
+
