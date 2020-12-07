@@ -1,7 +1,12 @@
-import CollapsibleView from "@eliav2/react-native-collapsible-view";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
-import { FlatList, Text, View, StyleSheet } from "react-native";
+import {
+    FlatList,
+    Text,
+    View,
+    StyleSheet,
+    TouchableWithoutFeedback,
+} from "react-native";
 
 import colors from "../config/colors";
 import { getReportIcon, getReportStatusText } from "./JobHelper";
@@ -50,26 +55,52 @@ export function ReportList({ reports }) {
         return <Text>No reports. Click here to add.</Text>;
     }
 
+    // This sorts reports in order of most to least severe.
+    // Problematic reports are at the top and are easier to see
     reports.sort((a, b) => {
-        return a.status_id - b.status_id;
+        return b.status_id - a.status_id;
     });
 
     return (
-        <View style={styles.reportsContainer}>
+        <View style={styles.reportListContainer}>
+            <TouchableWithoutFeedback
+                style={{
+                    backgroundColor: colors.softGray,
+                    flex: 1,
+                    borderWidth: 5,
+                    borderColor: "black",
+                    flexDirection: "column",
+                }}
+                onPress={() => {
+                    console.log("test");
+                }}
+            >
+                <View
+                    style={{
+                        alignItems: "center",
+                        flexDirection: "row",
+                    }}
+                >
+                    <MaterialCommunityIcons
+                        name="plus"
+                        size={24}
+                        color="black"
+                    />
+                    <Text>Add report</Text>
+                </View>
+            </TouchableWithoutFeedback>
+
+            <View
+                style={{
+                    height: 20,
+                }}
+            />
+
             <FlatList
                 data={reports}
                 keyExtractor={(item, index) => item.report_id.toString()}
                 renderItem={({ item }) => <ReportItem report={item} />}
             />
-
-            <Text
-                style={{
-                    textAlignVertical: "center",
-                    color: "tomato",
-                }}
-            >
-                Report job problem
-            </Text>
         </View>
     );
 }
@@ -78,34 +109,40 @@ export function ReportList({ reports }) {
 
 function ReportItem({ report }) {
     return (
-        <View style={styles.itemContainer}>
-            <View style={styles.iconContainer}>{getReportIcon(report)}</View>
-            <Text style={styles.text}>
-                {getReportStatusText(report.status_id)}
-            </Text>
-            <Text style={styles.text}>{report.text}</Text>
+        <View style={styles.reportContainer}>
+            <View style={styles.titleContainer}>
+                <View style={styles.iconContainer}>
+                    {getReportIcon(report)}
+                </View>
+                <Text style={styles.text}>
+                    {getReportStatusText(report.status_id, styles.statusText)}
+                </Text>
+            </View>
+            <Text style={styles.reportText}>{report.text}</Text>
         </View>
     );
-
 }
 
 const styles = StyleSheet.create({
-    text: {
-        color: "black",
-    },
-    itemContainer: {
-        justifyContent: "flex-start",
-        borderWidth: 1,
-        margin: 0,
-    },
-    reportsContainer: {
-        //padding: 5,
-        borderTopWidth: 1,
-        //justifyContent: "flex-start",
-        //flex: 1,
-    },
     statusText: {
-        color: "tomato"
+        color: "tomato",
+    },
+    titleContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    reportContainer: {
+        marginVertical: 2,
+        justifyContent: "flex-start",
+        borderTopWidth: 2,
+        borderColor: colors.softGray,
+    },
+    reportListContainer: {
+        flex: 1,
+    },
+    reportText: {
+        marginLeft: 34,
+        color: colors.gray,
     },
     iconContainer: {},
 });
