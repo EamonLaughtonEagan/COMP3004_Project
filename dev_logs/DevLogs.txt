@@ -1,0 +1,42 @@
+Dev Logs
+Noura Salamoun
+101020711
+
+Sep 21 - Sep 27
+-	looking into how to use React Native/GitHub
+
+Sep 28 - Oct 4
+- Further research into how to use React Native
+-	Learning how components work
+
+Oct 5 - Oct 11
+-	Setting up coding environment with other group members as I use Visual Studio Code
+-	Setting up the development environment with other group members
+
+Oct 12 - Oct 18
+-	Working on app
+
+Oct 19 - Oct 25
+-	Working on app, prepping for D2
+
+Oct 26 - Nov 1
+-	Reading week
+
+Nov 2 - Nov 8
+-	Researching different architectural patterns to see which our app fits
+-	Helping complete demo description
+-	Finalizing aspects of app we want to present, which parts need dummy data
+
+Nov 9 - Nov 15
+-	Planning for completing D3
+
+Nov 16 - Nov 22
+-	Working on D3; Working on  Template Design Pattern description and task assignments
+-	Helped edit and work on other Design Pattern style descriptions in relation to project
+
+Nov 23 - Nov 29
+-	Studying for oral interview/presentation
+
+Nov 30 - Dec 6
+-	Created Report
+-	Creating Authentication and Authorization
