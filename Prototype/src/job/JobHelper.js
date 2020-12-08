@@ -1,7 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 
-import colors from "../config/colors";
+import common from "../config/common";
 
 export function getReportStatusText(status_id) {
     switch (status_id) {
@@ -41,43 +41,52 @@ export function getWorstReport(jobObject) {
     return worstReport;
 }
 
+export function getReportColor(report) {
+    let iconColor;
+
+    if (report === null) {
+        return common.secondary;
+    } else if (report.status_id === 1) {
+        iconColor = "green";
+    } else if (report.status_id === 2) {
+        iconColor = common.secondary;
+    } else if (report.status_id === 3) {
+        iconColor = "firebrick";
+    }
+
+    return iconColor;
+}
+
+export function getReportIconName(report) {
+    let iconName;
+
+    if (report === null) {
+        iconName = "clock-outline";
+    } else if (report.status_id === 1) {
+        iconName = "check-bold";
+    } else if (report.status_id === 2) {
+        iconName = "alert-box-outline";
+    } else if (report.status_id === 3) {
+        iconName = "alert-box-outline";
+    }
+
+    return iconName;
+}
+
 /**
  * Choose an icon based on a report's status_id
  * @param report The report (null safe)
- * @param styles Optional style to apply to icon
- * @returns {JSX.Element}   A MaterialCommunityIcon
+ * @param iconStyle Icon style override
+ * @param iconSize  Icon size override
+ * @returns {string}   A MaterialCommunityIcon
  */
-
-/*
-function AppText({ children, style, ...otherProps }) {
-    return (
-        <Text style={[defaultStyles.text, style]} {...otherProps}>
-            {children}
-        </Text>
-    );
-}
- */
-export function getReportIcon(
+export function createReportIcon(
     report,
-    iconStyle = { flexDirection: "column", alignSelf: "center", margin: 5 }
+    iconStyle = { flexDirection: "column", alignSelf: "center", margin: 5 },
+    iconSize = 24
 ) {
-    let iconName = "clock-outline";
-    let iconColor = colors.secondary;
-    const iconSize = 24;
-
-
-    if (report !== null) {
-        if (report.status_id === 1) {
-            iconName = "check-bold";
-            iconColor = "green";
-        } else if (report.status_id === 2) {
-            iconName = "alert-box-outline";
-            iconColor = colors.secondary;
-        } else if (report.status_id === 3) {
-            iconName = "alert-box-outline";
-            iconColor = "firebrick";
-        }
-    }
+    const iconName = getReportIconName(report);
+    const iconColor = getReportColor(report);
 
     return (
         <MaterialCommunityIcons
@@ -101,22 +110,20 @@ export function timeMinHour(dateTimeStr) {
     let suffix = "AM";
     let hours = date.getHours();
 
-    const modHour = hours % 12;
-    if (modHour > 0) {
-        hours = modHour;
+    if (hours > 11) {
         suffix = "PM";
+    }
+
+    hours = hours % 12;
+
+    if (hours % 12 === 0) {
+        hours = 12;
     }
 
     const pad = "0" + date.getMinutes();
     const minutes = pad.substr(pad.length - 2);
     return hours + ":" + minutes + suffix;
 }
-
-const MILLIS_MIN = 1000 * 60;
-const MILLIS_HOUR = MILLIS_MIN * 60;
-const MILLIS_DAY = MILLIS_HOUR * 24;
-const MILLIS_WEEK = MILLIS_DAY * 7;
-const MILLIS_MONTH = MILLIS_DAY * 30;
 
 /**
  * Format milliseconds into short time form (relative). Examples:
@@ -128,7 +135,7 @@ const MILLIS_MONTH = MILLIS_DAY * 30;
  * @returns {string} in short time format (relative)
  */
 export function timeDiffShortRelative(ms) {
-    if (Math.abs(ms) < MILLIS_MIN * 5) {
+    if (Math.abs(ms) < common.MILLIS_MIN * 5) {
         return "now";
     }
 
@@ -156,43 +163,37 @@ export function timeDiffShort(ms) {
         return "now";
     } else {
         let str = "";
-        const months = Math.floor(ms / MILLIS_MONTH);
+        const months = Math.floor(ms / common.MILLIS_MONTH);
         if (months >= 1) {
             str += months + "mo ";
-            ms = ms % MILLIS_MONTH;
+            ms = ms % common.MILLIS_MONTH;
         }
 
-        const weeks = Math.floor(ms / MILLIS_WEEK);
+        const weeks = Math.floor(ms / common.MILLIS_WEEK);
         if (weeks >= 1) {
             str += weeks + "w ";
-            ms = ms % MILLIS_WEEK;
+            ms = ms % common.MILLIS_WEEK;
         }
 
         if (weeks > 0 || months > 0) {
             return str.trim();
         }
 
-        const days = Math.floor(ms / MILLIS_DAY);
+        const days = Math.floor(ms / common.MILLIS_DAY);
         if (days >= 1) {
             str += days + "d ";
-            ms = ms % MILLIS_DAY;
-        }
-
-        const hours = Math.floor(ms / MILLIS_HOUR);
-        if (hours >= 1) {
-            str += hours + "h ";
-            ms = ms % MILLIS_HOUR;
-        }
-
-        if (days > 0) {
             return str.trim();
         }
 
-        const mins = Math.floor(ms / MILLIS_MIN);
+        const hours = Math.floor(ms / common.MILLIS_HOUR);
+        if (hours >= 1) {
+            str += hours + "h ";
+            ms = ms % common.MILLIS_HOUR;
+        }
+
+        const mins = Math.floor(ms / common.MILLIS_MIN);
         if (mins >= 1) {
             str += mins + "m ";
-
-            ms = ms % MILLIS_MIN;
         }
 
         return str.trim();
