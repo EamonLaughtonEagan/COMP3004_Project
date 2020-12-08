@@ -8,9 +8,9 @@ import {
     TouchableWithoutFeedback,
 } from "react-native";
 
-import colors from "../config/colors";
-import { getReportIcon, getReportStatusText } from "./JobHelper";
+import common from "../config/common";
 import routes from "../navigation/routes";
+import { createReportIcon, getReportStatusText } from "./JobHelper";
 
 /*
 TODO: Collapsible view might be useful somewhere, but I can't figure out how to style the title to not be centered
@@ -66,7 +66,7 @@ export function ReportList({ reports, navigation }) {
         <View style={styles.reportListContainer}>
             <FlatList
                 data={reports}
-                keyExtractor={(item, index) => item.report_id.toString()}
+                keyExtractor={(item) => item.report_id.toString()}
                 renderItem={({ item }) => <ReportItem report={item} />}
             />
             <View
@@ -76,15 +76,16 @@ export function ReportList({ reports, navigation }) {
             />
             <TouchableWithoutFeedback
                 style={{
-                    backgroundColor: colors.softGray,
+                    backgroundColor: common.softGray,
                     flex: 1,
                     borderWidth: 5,
                     borderColor: "black",
                     flexDirection: "column",
                 }}
                 onPress={() => {
-                    navigation.navigate(routes.CREATE_REPORT);
-                    console.log("test");
+                    navigation.push(routes.CREATE_REPORT, {
+                        reports,
+                    });
                 }}
             >
                 <View
@@ -112,7 +113,7 @@ function ReportItem({ report }) {
         <View style={styles.reportContainer}>
             <View style={styles.titleContainer}>
                 <View style={styles.iconContainer}>
-                    {getReportIcon(report)}
+                    {createReportIcon(report)}
                 </View>
                 <Text style={styles.text}>
                     {getReportStatusText(report.status_id, styles.statusText)}
@@ -135,14 +136,14 @@ const styles = StyleSheet.create({
         marginVertical: 2,
         justifyContent: "flex-start",
         borderTopWidth: 2,
-        borderColor: colors.softGray,
+        borderColor: common.softGray,
     },
     reportListContainer: {
         flex: 1,
     },
     reportText: {
         marginLeft: 34,
-        color: colors.gray,
+        color: common.gray,
     },
     iconContainer: {},
 });

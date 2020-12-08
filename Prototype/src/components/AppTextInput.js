@@ -2,8 +2,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 
-import colors from "../config/colors";
-import defaultStyles from "../config/styles";
+import common from "../config/common";
 
 function AppTextInput({ icon, ...otherProps }) {
     return (
@@ -12,12 +11,12 @@ function AppTextInput({ icon, ...otherProps }) {
                 <MaterialCommunityIcons
                     name={icon}
                     size={20}
-                    color={defaultStyles.colors.medium}
+                    color={common.black}
                     style={styles.icon}
                 />
             )}
             <TextInput
-                placeholderTextColor={defaultStyles.colors.medium}
+                placeholderTextColor={common.softGray}
                 style={styles.input}
                 {...otherProps}
             />
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
         alignItems: "stretch",
         width: "100%",
         marginVertical: 10,
-        borderColor: colors.softGray, // Slightly transparent
+        borderColor: common.softGray, // Slightly transparent
         borderBottomWidth: 1,
         borderTopWidth: 1,
     },

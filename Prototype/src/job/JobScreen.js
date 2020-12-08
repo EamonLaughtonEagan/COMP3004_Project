@@ -64,7 +64,7 @@ function JobScreen({ route }) {
                 <View style={styles.titleContainer}>
                     <View>
                         <Text style={styles.title} numberOfLines={2}>
-                            {job.title}
+                            {job.name}
                         </Text>
                         <Text style={styles.soft}>
                             {customer.first_name} {customer.last_name}
@@ -87,7 +87,7 @@ function JobScreen({ route }) {
 
                 {/* Footer container */}
 
-                <ReportList reports={dummyReports} />
+                <ReportList reports={job.reports} {...props.navigation} />
             </View>
         </Screen>
     );

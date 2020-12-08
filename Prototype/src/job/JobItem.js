@@ -2,10 +2,10 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 
-import colors from "../config/colors";
+import common from "../config/common";
 import {
     timeMinHour,
-    getReportIcon,
+    createReportIcon,
     getWorstReport,
     timeShortRelativeNow,
 } from "./JobHelper";
@@ -18,12 +18,14 @@ import {
  */
 
 function JobItem({ jobData, onPress }) {
+    console.log("job data " + JSON.stringify(jobData));
+
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.container}>
                 <View style={styles.titleContainer}>
                     <View style={{ flexDirection: "row" }}>
-                        {getReportIcon(getWorstReport(jobData))}
+                        {createReportIcon(getWorstReport(jobData))}
                         <Text style={styles.time}>
                             {timeMinHour(jobData.job.start_time)}
                         </Text>
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     container: {
         overflow: "hidden",
         justifyContent: "space-between",
-        borderColor: colors.softGray,
+        borderColor: common.softGray,
         borderTopWidth: 1,
         paddingBottom: 20,
         paddingHorizontal: 15,

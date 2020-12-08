@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 
-import colors from "../config/colors";
+import common from "../config/common";
 
 function UserItem({ email, first_name, last_name, permission_name, onPress }) {
     return (
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     container: {
         overflow: "hidden",
         justifyContent: "space-between",
-        borderColor: colors.softGray,
+        borderColor: common.softGray,
         borderTopWidth: 1,
         paddingBottom: 20,
         paddingHorizontal: 15,
