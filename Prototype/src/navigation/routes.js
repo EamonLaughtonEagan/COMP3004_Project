@@ -6,4 +6,5 @@ export default Object.freeze({
     HOME: "Jobs",
     WELCOME: "Welcome",
     USER_LIST: "Users",
+    CREATE_REPORT: "Create Report",
 });

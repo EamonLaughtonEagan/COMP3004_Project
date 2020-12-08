@@ -10,6 +10,7 @@ import {
 
 import colors from "../config/colors";
 import { getReportIcon, getReportStatusText } from "./JobHelper";
+import routes from "../navigation/routes";
 
 /*
 TODO: Collapsible view might be useful somewhere, but I can't figure out how to style the title to not be centered
@@ -50,7 +51,7 @@ Also here's the old code for the circled alert (exclamation mark):
 
  */
 
-export function ReportList({ reports }) {
+export function ReportList({ reports, navigation }) {
     if (!reports || reports.length === 0) {
         return <Text>No reports. Click here to add.</Text>;
     }
@@ -63,6 +64,16 @@ export function ReportList({ reports }) {
 
     return (
         <View style={styles.reportListContainer}>
+            <FlatList
+                data={reports}
+                keyExtractor={(item, index) => item.report_id.toString()}
+                renderItem={({ item }) => <ReportItem report={item} />}
+            />
+            <View
+                style={{
+                    height: 20,
+                }}
+            />
             <TouchableWithoutFeedback
                 style={{
                     backgroundColor: colors.softGray,
@@ -72,6 +83,7 @@ export function ReportList({ reports }) {
                     flexDirection: "column",
                 }}
                 onPress={() => {
+                    navigation.navigate(routes.CREATE_REPORT);
                     console.log("test");
                 }}
             >
@@ -89,18 +101,6 @@ export function ReportList({ reports }) {
                     <Text>Add report</Text>
                 </View>
             </TouchableWithoutFeedback>
-
-            <View
-                style={{
-                    height: 20,
-                }}
-            />
-
-            <FlatList
-                data={reports}
-                keyExtractor={(item, index) => item.report_id.toString()}
-                renderItem={({ item }) => <ReportItem report={item} />}
-            />
         </View>
     );
 }
