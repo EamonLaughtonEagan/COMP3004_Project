@@ -17,12 +17,12 @@ export class Cache {
         return Date.now() - Cache.lastFetch > 60000 * 5;
     }
 
-    static initialize = () => {
+    static fetchAll = () => {
         console.log("Initializing cache...");
         Cache.lastFetch = Date.now();
 
-        Users.fetchUsers()
-            .then((r) => {
+        Users.fetchUsers().then((success) => {
+            if (success) {
                 console.log(
                     "Fetched " +
                         Cache.users.length +
@@ -30,13 +30,11 @@ export class Cache {
                         (Date.now() - Cache.lastFetch) +
                         "ms)"
                 );
-            })
-            .catch((err) => {
-                console.error("Error while fetching users: " + err.message);
-            });
+            }
+        });
 
-        Customers.fetchCustomers()
-            .then((r) => {
+        Customers.fetchCustomers().then((success) => {
+            if (success) {
                 console.log(
                     "Fetched " +
                         Cache.customers.length +
@@ -44,13 +42,11 @@ export class Cache {
                         (Date.now() - Cache.lastFetch) +
                         "ms)"
                 );
-            })
-            .catch((err) => {
-                console.error("Error while fetching customers: " + err.message);
-            });
+            }
+        });
 
-        Jobs.fetchJobs()
-            .then((r) => {
+        Jobs.fetchJobs().then((success) => {
+            if (success) {
                 console.log(
                     "Fetched " +
                         Cache.jobs.length +
@@ -58,10 +54,8 @@ export class Cache {
                         (Date.now() - Cache.lastFetch) +
                         "ms)"
                 );
-            })
-            .catch((err) => {
-                console.error("Error while fetching jobs: " + err.message);
-            });
+            }
+        });
     };
 
     static createPostJSON = (obj) => {
@@ -95,7 +89,7 @@ export class Cache {
 export class Users {
     /**
      * Fetch users from the server asynchronously.
-     * @return If successful, a resolved Promise. Otherwise, an error is thrown.
+     * @return true if successful, otherwise false.
      */
     static fetchUsers = () => {
         return fetch(endpointUsers)
@@ -104,11 +98,11 @@ export class Users {
             })
             .then((json) => {
                 Cache.users = json.data;
-                return Promise.resolve();
+                return true;
             })
             .catch((err) => {
-                console.log("Error while fetching users: " + err.message);
-                return Promise.reject(err);
+                console.error("Error while fetching users: " + err.message);
+                return false;
             });
     };
 
@@ -124,7 +118,7 @@ export class Users {
 export class Jobs {
     /**
      * Fetch jobs from the server asynchronously
-     * @return If successful, a resolved Promise. Otherwise, an error is thrown.
+     * @return true if successful, otherwise false.
      */
     static fetchJobs = () => {
         return fetch(endpointJobs)
@@ -133,11 +127,12 @@ export class Jobs {
             })
             .then((json) => {
                 Cache.jobs = json.data;
-                return Promise.resolve();
+                //console.log(JSON.stringify(Cache.jobs));
+                return true;
             })
             .catch((err) => {
-                console.log("Error while fetching jobs: " + err.message);
-                return Promise.reject(err);
+                console.error("Error while fetching jobs: " + err.message);
+                return false;
             });
     };
 
@@ -160,11 +155,10 @@ export class Jobs {
      * @param job Object with job properties to create. Must have these properties:
      *      - start_time, endtime "YYYY MM:DD HH:MM" string
      *      - name, description:
-     * @param success   Callback run on success (job object is passed)
-     * @param fail      Callback to run on failure (error is passed)
+     * @param promise   Callback to handle fetch result
      * @return {Promise<T | Promise<never>>}
      */
-    static postJob = (job, success, fail) => {
+    static postJob = (job, promise) => {
         if (
             !job ||
             !job.customer_id ||
@@ -185,14 +179,13 @@ export class Jobs {
             .then((response) => {
                 const json = Cache.validateJSONResponse(response).json();
                 console.log("job PUT reponse from server: " + json);
-                const job = JSON.parse(json);
-
-                success(job);
-                return Promise.resolve();
+                return JSON.parse(json);
             })
             .catch((error) => {
-                fail(error);
-                return Promise.resolve();
+                console.error(
+                    "Error during job POST request: " + error.message
+                );
+                return null;
             });
     };
 }
@@ -200,7 +193,7 @@ export class Jobs {
 export class Customers {
     /**
      * Fetch users from the server. Blocks thread while waiting for response.
-     * @return If successful, a resolved Promise. Otherwise, an error is thrown.
+     * @return true if successful, otherwise false.
      */
     static fetchCustomers = () => {
         return fetch(endpointCustomers)
@@ -209,11 +202,10 @@ export class Customers {
             })
             .then((json) => {
                 Cache.customers = json.data;
-                return Promise.resolve();
             })
             .catch((err) => {
-                console.log("Error while fetching customers: " + err.message);
-                return Promise.reject(err);
+                console.error("Error while fetching customers: " + err.message);
+                return false;
             });
     };
 
