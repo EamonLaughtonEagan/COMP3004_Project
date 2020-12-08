@@ -51,8 +51,14 @@ functions:
           path: sites/{id}
           method: get
       - http:
-          path: customers/
+          path: customers
           method: get
       - http:
-          path: customers/
+          path: customers
           method: post
+      - http:
+          path: reports
+          method: post
+      - http:
+          path: reports
+          method: delete
