@@ -15,11 +15,12 @@ class Server {
         Server.send(res, 400, null, "Content-type must be application/json");
     }
 
-    static send = (res, status, data, message) => {
+    static send = (res, status, payload, message) => {
         res.status(status)
-            .setHeader("Content-type", "application/json")
-            .send({
-                data: data,
+            .setHeader("Content-type", "application/json");
+
+        res.send({
+                data: payload,
                 message: message
         });
     }
