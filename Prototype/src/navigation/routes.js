@@ -1,6 +1,7 @@
 export default Object.freeze({
     LOGIN: "Login",
-    JOB_LIST: "Jobs",
+    FUTURE_JOBS: "Future Jobs",
+    PAST_JOBS: "Past Jobs",
     JOB: "Job",
     ACCOUNT: "Account",
     HOME: "Jobs",
