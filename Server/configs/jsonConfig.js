@@ -70,6 +70,7 @@ class jsonConfig {
         return {
             report_id: e.report_id,
             user_id: e.user_id,
+            report_time: e.report_time,
             job_id: e.job_id,
             status_id: e.status_id,
             text: e.text
