@@ -8,45 +8,60 @@ const jsonType = "application/json";
 
 export class Cache {
     static lastFetch = null;
-    static initialized = false;
 
     static jobs = [];
     static customers = [];
     static users = [];
 
+    static fetchedRecently() {
+        return Date.now() - Cache.lastFetch > 60000 * 5;
+    }
+
     static initialize = () => {
         console.log("Initializing cache...");
         Cache.lastFetch = Date.now();
 
-        Users.fetchUsers().then((r) => {
-            console.log(
-                "Fetched " +
-                    Cache.users.length +
-                    " users (" +
-                    (Date.now() - Cache.lastFetch) +
-                    "ms)"
-            );
-        });
+        Users.fetchUsers()
+            .then((r) => {
+                console.log(
+                    "Fetched " +
+                        Cache.users.length +
+                        " users (" +
+                        (Date.now() - Cache.lastFetch) +
+                        "ms)"
+                );
+            })
+            .catch((err) => {
+                console.error("Error while fetching users: " + err.message);
+            });
 
-        Customers.fetchCustomers().then((r) => {
-            console.log(
-                "Fetched " +
-                    Cache.customers.length +
-                    " customers (" +
-                    (Date.now() - Cache.lastFetch) +
-                    "ms)"
-            );
-        });
+        Customers.fetchCustomers()
+            .then((r) => {
+                console.log(
+                    "Fetched " +
+                        Cache.customers.length +
+                        " customers (" +
+                        (Date.now() - Cache.lastFetch) +
+                        "ms)"
+                );
+            })
+            .catch((err) => {
+                console.error("Error while fetching customers: " + err.message);
+            });
 
-        Jobs.fetchJobs().then((r) => {
-            console.log(
-                "Fetched " +
-                    Cache.jobs.length +
-                    " jobs (" +
-                    (Date.now() - Cache.lastFetch) +
-                    "ms)"
-            );
-        });
+        Jobs.fetchJobs()
+            .then((r) => {
+                console.log(
+                    "Fetched " +
+                        Cache.jobs.length +
+                        " jobs (" +
+                        (Date.now() - Cache.lastFetch) +
+                        "ms)"
+                );
+            })
+            .catch((err) => {
+                console.error("Error while fetching jobs: " + err.message);
+            });
     };
 
     static createPostJSON = (obj) => {
@@ -93,7 +108,7 @@ export class Users {
             })
             .catch((err) => {
                 console.log("Error while fetching users: " + err.message);
-                throw err;
+                return Promise.reject(err);
             });
     };
 
@@ -122,7 +137,7 @@ export class Jobs {
             })
             .catch((err) => {
                 console.log("Error while fetching jobs: " + err.message);
-                throw err;
+                return Promise.reject(err);
             });
     };
 
@@ -140,25 +155,45 @@ export class Jobs {
         return Cache.jobs;
     };
 
-    static postJob = (jobObject) => {
-        if (!jobObject || !jobObject.job || !jobObject.customer) {
-            throw new Error(
-                "Malformed job post. jobObject must contain at least .job and .customer"
+    /**
+     * Send POST request to server to make a new
+     * @param job Object with job properties to create. Must have these properties:
+     *      - start_time, endtime "YYYY MM:DD HH:MM" string
+     *      - name, description:
+     * @param success   Callback run on success (job object is passed)
+     * @param fail      Callback to run on failure (error is passed)
+     * @return {Promise<T | Promise<never>>}
+     */
+    static postJob = (job, success, fail) => {
+        if (
+            !job ||
+            !job.customer_id ||
+            !job.start_time ||
+            !job.end_time ||
+            !job.site_id ||
+            !job.name ||
+            !job.description
+        ) {
+            fail(
+                new Error(
+                    "Malformed job post. Job object  with .job.customer_id"
+                )
             );
         }
 
-        const resJSON = fetch(
-            endpointJobs + "/" + jobObject.job.job_id,
-            Cache.createPostJSON(jobObject)
-        )
+        fetch(endpointJobs, Cache.createPostJSON(job))
             .then((response) => {
-                return Cache.validateJSONResponse(response).json();
+                const json = Cache.validateJSONResponse(response).json();
+                console.log("job PUT reponse from server: " + json);
+                const job = JSON.parse(json);
+
+                success(job);
+                return Promise.resolve();
             })
             .catch((error) => {
-                throw error;
+                fail(error);
+                return Promise.resolve();
             });
-
-        console.log("Response from server: " + JSON.stringify(resJSON));
     };
 }
 
@@ -178,24 +213,26 @@ export class Customers {
             })
             .catch((err) => {
                 console.log("Error while fetching customers: " + err.message);
-                throw err;
+                return Promise.reject(err);
             });
     };
 
-    static getCustomer = (customer_id) => {
-        Cache.customers.forEach((c) => {
-            if (c.customer_id === customer_id) {
-                return c;
-            }
-        });
-
-        return null;
+    static findCustomer = (customer_id) => {
+        return Cache.customers.find((c) => c.customer_id === customer_id);
     };
 
-    static findCustomer(site_id) {
+    static findCustomerBySiteId(site_id) {
         return Cache.customers.find((customer) => {
             customer.sites.some((site) => site.site_id === site_id);
         });
+    }
+
+    static findCustomerSiteId(customer) {
+        if (!customer || !customer.sites || customer.sites.length < 1) {
+            return null;
+        }
+
+        return customer.sites[0];
     }
 
     static getCustomers = () => {
