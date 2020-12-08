@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 import AppButton from "../components/AppButton";
 import Screen from "../components/AppScreen";
-import colors from "../config/colors";
+import common from "../config/common";
 import routes from "../navigation/routes";
 
 function WelcomeScreen({ navigation }) {
@@ -25,7 +25,7 @@ function WelcomeScreen({ navigation }) {
                     <MaterialCommunityIcons
                         name="account-convert"
                         size={100}
-                        color={colors.primary}
+                        color={common.primary}
                         style={styles.logo}
                     />
                     <Text style={styles.logotitle}>
@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     logotitle: {
-        color: colors.primary,
+        color: common.primary,
         fontSize: 30,
         margin: 5,
     },
     logosubtitle: {
-        color: colors.secondary,
+        color: common.secondary,
         fontSize: 12,
         textAlign: "center",
         alignSelf: "stretch",
