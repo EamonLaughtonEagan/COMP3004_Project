@@ -7,7 +7,7 @@ import { Cache } from "../cache/Cache";
 import AppButton from "../components/AppButton";
 import Screen from "../components/AppScreen";
 import AppTextInput from "../components/AppTextInput";
-import colors from "../config/colors";
+import common from "../config/common";
 import routes from "../navigation/routes";
 
 function LoginScreen({ navigation }) {
@@ -39,19 +39,18 @@ function LoginScreen({ navigation }) {
                 placeholder="Password"
                 secureTextEntry
             />
-            <Text style={{ color: colors.secondary }}>
+            <Text style={{ color: common.secondary }}>
                 Please log in to continue
             </Text>
             <AppButton
                 title="Log in"
                 onPress={() => {
-                    Auth.login(email, password);
-                    if (Auth.user !== undefined) {
-                        Keyboard.dismiss();
-                        navigation.navigate(routes.HOME);
-                    } else {
-                        Alert.alert("Invalid username or password.");
-                    }
+                    //if (Auth.login(email, password) !== null) {
+                    Keyboard.dismiss();
+                    navigation.navigate(routes.HOME);
+                    //} else {
+                    //    Alert.alert("Invalid username or password.");
+                    //}
                 }}
                 style={{
                     marginVertical: 40,
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     message: {
-        color: colors.primary,
+        color: common.primary,
         fontSize: 15,
         fontWeight: "bold",
         marginVertical: 5,
