@@ -16,9 +16,11 @@ class Server {
     }
 
     static send = (res, status, data, message) => {
-        res.status(status).send({
-            data: data,
-            message: message
+        res.status(status)
+            .setHeader("Content-type", "application/json")
+            .send({
+                data: data,
+                message: message
         });
     }
 
