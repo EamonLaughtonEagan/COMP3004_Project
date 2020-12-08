@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 			j.job_id, j.name, j.description, j.start_time, j.end_time,
 			c.customer_id, c.first_name, c.last_name, c.email, c.cell, c.home,
 			s.site_id, s.address, s.volume, s.type,
-			r.report_id, r.status_id, r.user_id, r.text 
+			r.report_id, r.status_id, r.user_id, r.report_time, r.text
 		
 		FROM jobs AS j INNER JOIN customers AS c 
 		ON c.customer_id = j.customer_id
@@ -75,8 +75,8 @@ router.post('/', (req, res) => {
 
 	let { customer_id, site_id, start_time, end_time, name, description } = req.body;
 
-	// Callback query, called once site_id is defined
-	const callback = (customer_id, site_id, start_time, end_time, name, description) => {
+	// Callback query that inserts the new job, called once site_id is defined
+	const insertJobCallback = (customer_id, site_id, start_time, end_time, name, description) => {
 		const query = `INSERT INTO jobs (customer_id, site_id, start_time, end_time, name, description) VALUES ` +
 			`('${customer_id}', '${site_id}', '${start_time}', '${end_time}', '${name}', '${description}') `;
 
@@ -87,14 +87,18 @@ router.post('/', (req, res) => {
 			}
 
 			const { insertId } = results;
+
 			const job = { job_id: insertId, customer_id, site_id, start_time, end_time, name, description }
+
+
+
 			Server.send(res, 201, job, "Job " + insertId + " created.");
 		});
 	}
 
 	// If site id is not defined, query it
 	if (site_id) {
-		callback(customer_id, site_id, start_time, end_time, name, description);
+		insertJobCallback(customer_id, site_id, start_time, end_time, name, description);
 	} else {
 		const siteQuery = `SELECT site_id FROM sites WHERE customer_id = '${customer_id}'`;
 		pool.query(siteQuery, (err, results) => {
@@ -109,7 +113,7 @@ router.post('/', (req, res) => {
 			}
 
 			site_id = results[0];
-			callback(customer_id, site_id, start_time, end_time, name, description);
+			insertJobCallback(customer_id, site_id, start_time, end_time, name, description);
 		});
 	}
 
@@ -124,6 +128,7 @@ router.put('/:id', (req, res) => {
 	}
 
 	const { id } = req.params;
+
 	const query = `SELECT * FROM jobs WHERE job_id=${id} LIMIT 1`;
 	pool.query(query, (err, results) => {
 		if (err) {
@@ -131,18 +136,18 @@ router.put('/:id', (req, res) => {
 			return;
 		}
 
-		const { job_id, customer_id, site_id, start_time, end_time, name, description } = { ...results[0], ...req.body }
+		if (!results || results.length === 0) {
+			Server.send400(res, "Job " + id + " not found; create it before doing a PUT request.");
+			return;
+		}
+
+		const job = req.body;
+		const { job_id, customer_id, site_id, start_time, end_time, name, description, reports } = { ...results[0], ...job }
 
 		const query = `UPDATE jobs SET
 			customer_id='${customer_id}', site_id='${site_id}', start_time='${start_time}',
 			end_time='${end_time}', name='${name}', description='${description}'
 		    WHERE job_id='${job_id}'`;
-
-		console.log("Executing query (" + query + ")");
-		console.log("...results[0] " + JSON.stringify(results[0]));
-		console.log("req.body " + JSON.stringify(req.body, null, 2));
-		console.log("spread: \ncustomer_id " + customer_id + " site_id " + site_id);
-		console.log("params " + JSON.stringify(req.params));
 
 		pool.query(query, (err) => {
 			if (err) {
