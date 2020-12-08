@@ -76,7 +76,9 @@ router.post('/', (req, res) => {
 	let { customer_id, site_id, start_time, end_time, name, description } = req.body;
 
 	// Callback query that inserts the new job, called once site_id is defined
-	const insertJobCallback = (customer_id, site_id, start_time, end_time, name, description) => {
+	const insertJobCallback =
+		(customer_id, site_id, start_time, end_time, name, description) => {
+
 		const query = `INSERT INTO jobs (customer_id, site_id, start_time, end_time, name, description) VALUES ` +
 			`('${customer_id}', '${site_id}', '${start_time}', '${end_time}', '${name}', '${description}') `;
 
@@ -87,19 +89,15 @@ router.post('/', (req, res) => {
 			}
 
 			const { insertId } = results;
-
-			const job = { job_id: insertId, customer_id, site_id, start_time, end_time, name, description }
-
-
-
-			Server.send(res, 201, job, "Job " + insertId + " created.");
+			Server.send(res, 201, {
+				results: results,
+				insert_id: insertId,
+			}, "Query successful; see results.");
 		});
 	}
 
 	// If site id is not defined, query it
-	if (site_id) {
-		insertJobCallback(customer_id, site_id, start_time, end_time, name, description);
-	} else {
+	if (!site_id) {
 		const siteQuery = `SELECT site_id FROM sites WHERE customer_id = '${customer_id}'`;
 		pool.query(siteQuery, (err, results) => {
 			if (err) {
@@ -115,8 +113,9 @@ router.post('/', (req, res) => {
 			site_id = results[0];
 			insertJobCallback(customer_id, site_id, start_time, end_time, name, description);
 		});
+	} else {
+		insertJobCallback(customer_id, site_id, start_time, end_time, name, description);
 	}
-
 
 });
 
