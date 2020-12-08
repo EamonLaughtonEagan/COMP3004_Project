@@ -1,8 +1,9 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { StyleSheet, Keyboard, Text } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { StyleSheet, Keyboard, Text, Alert } from "react-native";
 
+import { Auth } from "../auth/Auth";
+import { Cache } from "../cache/Cache";
 import AppButton from "../components/AppButton";
 import Screen from "../components/AppScreen";
 import AppTextInput from "../components/AppTextInput";
@@ -44,8 +45,13 @@ function LoginScreen({ navigation }) {
             <AppButton
                 title="Log in"
                 onPress={() => {
-                    Keyboard.dismiss();
-                    navigation.navigate(routes.HOME);
+                    Auth.login(email, password);
+                    if (Auth.user !== undefined) {
+                        Keyboard.dismiss();
+                        navigation.navigate(routes.HOME);
+                    } else {
+                        Alert.alert("Invalid username or password.");
+                    }
                 }}
                 style={{
                     marginVertical: 40,
