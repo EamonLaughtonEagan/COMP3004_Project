@@ -1,11 +1,12 @@
 export default Object.freeze({
     LOGIN: "Login",
-    FUTURE_JOBS: "Future Jobs",
-    PAST_JOBS: "Past Jobs",
+    FUTURE_JOBS: "Upcoming Jobs",
+    PAST_JOBS: "Old Jobs",
     JOB: "Job",
+    JOBS: "Jobs",
     ACCOUNT: "Account",
-    HOME: "Jobs",
     WELCOME: "Welcome",
     USER_LIST: "Users",
     CREATE_REPORT: "Create Report",
+    CREATE_JOB: "Create Job",
 });
