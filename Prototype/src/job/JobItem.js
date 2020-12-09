@@ -10,16 +10,9 @@ import {
     timeShortRelativeNow,
 } from "./JobHelper";
 
-/*
-    status_id       text
-    1               ok
-    2               minor problem
-    3               major problem
- */
-
-function JobItem({ jobData, onPress }) {
-    console.log("job data " + JSON.stringify(jobData));
-
+function JobItem(props) {
+    const onPress = props.onPress;
+    const jobData = props.jobData;
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.container}>
