@@ -158,6 +158,7 @@ export class Jobs {
      * @param promise   Callback to handle fetch result
      */
     static postJob = (job) => {
+        console.log("postJob()")
         if (
             !job ||
             !job.customer_id ||
@@ -168,21 +169,29 @@ export class Jobs {
         ) {
             console.log(JSON.stringify(job));
             console.log(
-                "Malformed job post. Job object  with .job.customer_id"
+                "Malformed job object in job post request."
             );
             return null;
         }
 
+        console.log("posting job");
+        console.log("");
         fetch(endpointJobs, Cache.createPostJSON(job))
             .then((response) => {
+                console.log("received response");
                 const json = Cache.validateJSONResponse(response).json();
                 console.log("job PUT reponse from server: " + json);
                 return JSON.parse(json);
             })
             .catch((error) => {
+                console.log("error during post request");
                 console.error(
                     "Error during job POST request: " + error.message
                 );
+
+                if (error) {
+                    console.log(JSON.stringify(error));
+                }
                 return null;
             });
     };

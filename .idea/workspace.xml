@@ -22,27 +22,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b983b147-ef33-4d69-9175-007e40080e4d" name="Default Changelist" comment="DO NOT USE THIS VERSION. It will be fixed soon; I am committing this before updating expo in case of problems.">
+    <list default="true" id="b983b147-ef33-4d69-9175-007e40080e4d" name="Default Changelist" comment="Push for presentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Prototype/src/cache/Cache.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/cache/Cache.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/AppButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/AppScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/components/Screen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/Screen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/config/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/config/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/job/AddJobButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/CreateJobButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/job/CreateJob.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/CreateJobScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/job/CreateReport.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/CreateReportScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/job/JobItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/JobItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/job/CreateJobScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/CreateJobScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Prototype/src/job/JobListScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/JobListScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/job/JobScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/JobScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/job/ReportList.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/ReportList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/navigation/WelcomeNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/navigation/WelcomeNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/screens/AccountScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/screens/AccountScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Prototype/src/screens/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/screens/LoginScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/screens/WelcomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/screens/WelcomeScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/user/UserItemScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/user/UserItemScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.serverless/cloudformation-template-update-stack.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.serverless/cloudformation-template-update-stack.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.serverless/serverless-state.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.serverless/serverless-state.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.serverless/sml.zip" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.serverless/sml.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/routes/jobs.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/routes/jobs.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +147,7 @@
       <workItem from="1607460457835" duration="19246000" />
       <workItem from="1607489384844" duration="13049000" />
       <workItem from="1607508157669" duration="15455000" />
-      <workItem from="1607527140383" duration="7470000" />
+      <workItem from="1607527140383" duration="10892000" />
     </task>
     <task id="LOCAL-00001" summary="Added /Server/ files to .gitignore: &#10;- Server/node_modules, &#10;- Server/.serverless/sml.zip&#10;- Server/.idea">
       <created>1607149431780</created>
@@ -349,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607493119282</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Push for presentation">
+      <created>1607535583117</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1607535583117</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +364,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Merged Lambda functions to improve connection pooling. Previously, one lambda was used for each route (ie. /users/, /jobs/). Now all requests are handled by the same Lambda on AWS." />
     <MESSAGE value="Removed callback for fetching new users; instead users should be re-cached when new users are created." />
     <MESSAGE value="Removed unused classes" />
     <MESSAGE value="Fixed broken promises; a boolean is now returned in fetch() calls instead of an unresolved promise." />
@@ -393,7 +388,8 @@
     <MESSAGE value="Added JobListScreen to navigator which includes two views, separating old and new jobs." />
     <MESSAGE value="DO NOT USE THIS VERSION. It will be fixed soon; I am committing this before updating expo in case of problems. Details below:&#10;&#10;Overhauled Navigation (WelcomeNavigator.js) with the following:&#10;- Removed MaterialTopBarNavigator for separating JobLists&#10;- Moved (previously: Jobs and Account tabs) to Upcoming Jobs and Old Jobs) on the BOTTOM of the screen because it being at the top is dumb&#10;- Job Creation screen linked with new button on this bottom tab; it will soon not look like garbage&#10;&#10;- Root DrawerNavigator now allows the user to open a sidebar anywhere&#10;- Sidebar allows user to navigate to any listed screen&#10;- All screens will soon have a header with a button for opening the drawer (you can just swipe left-&gt;right for now).&#10;- All screens will soon have titles (just need to define it every time Screen is used)" />
     <MESSAGE value="DO NOT USE THIS VERSION. It will be fixed soon; I am committing this before updating expo in case of problems." />
-    <option name="LAST_COMMIT_MESSAGE" value="DO NOT USE THIS VERSION. It will be fixed soon; I am committing this before updating expo in case of problems." />
+    <MESSAGE value="Push for presentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Push for presentation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" width="816" height="730" key="#Intentions" timestamp="1607137269354">
@@ -436,6 +432,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607403756848" />
+    <state x="552" y="239" key="Vcs.Push.Dialog.v2" timestamp="1607535586079">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="239" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607535586079" />
     <state x="667" y="253" width="670" height="534" key="find.popup" timestamp="1607518664376">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

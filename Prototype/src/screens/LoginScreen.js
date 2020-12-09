@@ -44,8 +44,7 @@ function LoginScreen({ navigation }) {
             <AppButton
                 title="Log in"
                 onPress={() => {
-                    // if (Auth.login(email, password) !== null) {
-                    if (true) {
+                    if (Auth.login(email, password) !== null) {
                         Keyboard.dismiss();
                         navigation.navigate(routes.JOBS);
                     } else {

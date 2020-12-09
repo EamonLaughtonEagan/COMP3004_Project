@@ -136,13 +136,6 @@ class CreateJobScreen extends React.Component {
                         requireSelection
                         autoSort={false}
                     />
-                    <View
-                        style={{
-                            padding: 10,
-                            alignItems: "center",
-                            backgroundColor: "#ddd",
-                        }}
-                    />
                 </View>
                 <View style={styles.buttonContainer}>
                     <AppButton
@@ -164,7 +157,8 @@ class CreateJobScreen extends React.Component {
                             console.log("Create job params:");
                             console.log(JSON.stringify(job));
 
-                            Jobs.postJob(job);
+                            const r = Jobs.postJob(job);
+                            console.log("r = " + JSON.stringify(r));
                         }}
                     />
                 </View>

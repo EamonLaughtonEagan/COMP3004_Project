@@ -84,7 +84,7 @@ export class FutureJobList extends JobListScreen {
             const jobDate = new Date(jobs[i].job.start_time);
             const now = Date.now();
 
-            if (now - jobDate > -common.MILLIS_DAY) {
+            if (now - jobDate > -common.MILLIS_HOUR) {
                 jobs.splice(i, 1);
             }
         }
@@ -100,7 +100,7 @@ export class PastJobList extends JobListScreen {
             const jobDate = new Date(jobs[i].job.start_time);
             const now = Date.now();
 
-            if (jobDate - now > common.MILLIS_DAY) {
+            if (jobDate - now > common.MILLIS_HOUR) {
                 jobs.splice(i, 1);
             }
         }
