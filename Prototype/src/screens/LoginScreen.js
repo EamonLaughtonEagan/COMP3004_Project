@@ -3,19 +3,18 @@ import React, { useState } from "react";
 import { StyleSheet, Keyboard, Text, Alert } from "react-native";
 
 import { Auth } from "../auth/Auth";
-import { Cache } from "../cache/Cache";
 import AppButton from "../components/AppButton";
-import Screen from "../components/AppScreen";
+import RawScreen from "../components/AppScreen";
 import AppTextInput from "../components/AppTextInput";
 import common from "../config/common";
 import routes from "../navigation/routes";
 
 function LoginScreen({ navigation }) {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    let email = "";
+    let password = "";
 
     return (
-        <Screen style={styles.screen}>
+        <RawScreen style={styles.screen}>
             <MaterialCommunityIcons
                 name="account-convert"
                 size={100}
@@ -28,14 +27,14 @@ function LoginScreen({ navigation }) {
                 autoCorrect={false}
                 icon="email-outline"
                 keyboardType="email-address"
-                onChangeText={(text) => setEmail(text)}
+                onChangeText={(text) => (email = text)}
                 placeholder="Email"
             />
             <AppTextInput
                 autoCapitalize="none"
                 autoCorrect={false}
                 icon="eye-off"
-                onChangeText={(text) => setPassword(text)}
+                onChangeText={(text) => (password = text)}
                 placeholder="Password"
                 secureTextEntry
             />
@@ -45,18 +44,19 @@ function LoginScreen({ navigation }) {
             <AppButton
                 title="Log in"
                 onPress={() => {
-                    //if (Auth.login(email, password) !== null) {
-                    Keyboard.dismiss();
-                    navigation.navigate(routes.HOME);
-                    //} else {
-                    //    Alert.alert("Invalid username or password.");
-                    //}
+                    // if (Auth.login(email, password) !== null) {
+                    if (true) {
+                        Keyboard.dismiss();
+                        navigation.navigate(routes.JOBS);
+                    } else {
+                        Alert.alert("Invalid username or password.");
+                    }
                 }}
                 style={{
                     marginVertical: 40,
                 }}
             />
-        </Screen>
+        </RawScreen>
     );
 }
 

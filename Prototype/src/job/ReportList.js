@@ -14,6 +14,7 @@ import { createReportIcon, getReportStatusText } from "./JobHelper";
 
 /*
 TODO: Collapsible view might be useful somewhere, but I can't figure out how to style the title to not be centered
+edit: styling in title component should fix this
 
 <CollapsibleView
     noArrow
@@ -65,6 +66,7 @@ export function ReportList({ reports, navigation }) {
     return (
         <View style={styles.reportListContainer}>
             <FlatList
+                scrollEnabled={false}
                 data={reports}
                 keyExtractor={(item) => item.report_id.toString()}
                 renderItem={({ item }) => <ReportItem report={item} />}

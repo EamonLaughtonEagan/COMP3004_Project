@@ -10,4 +10,8 @@ export default class common {
     static MILLIS_DAY = this.MILLIS_HOUR * 24;
     static MILLIS_WEEK = this.MILLIS_DAY * 7;
     static MILLIS_MONTH = this.MILLIS_DAY * 30;
+
+    static opacity(r, g, b, a) {
+        return "rgba(r, g, b, a)";
+    }
 }

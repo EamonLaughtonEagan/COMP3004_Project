@@ -3,13 +3,13 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import AppButton from "../components/AppButton";
-import Screen from "../components/AppScreen";
+import RawScreen from "../components/AppScreen";
 import common from "../config/common";
 import routes from "../navigation/routes";
 
 function WelcomeScreen({ navigation }) {
     return (
-        <Screen>
+        <RawScreen>
             <View
                 style={{
                     flex: 1,
@@ -42,7 +42,7 @@ function WelcomeScreen({ navigation }) {
                     onPress={() => navigation.navigate(routes.LOGIN)}
                 />
             </View>
-        </Screen>
+        </RawScreen>
     );
 }
 

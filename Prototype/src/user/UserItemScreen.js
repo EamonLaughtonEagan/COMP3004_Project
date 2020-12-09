@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, StyleSheet } from "react-native";
 
-import Screen from "../components/AppScreen";
+import RawScreen from "../components/AppScreen";
 import UserItem from "./UserItem";
 //import routes from "../navigation/routes";
 
@@ -11,7 +11,7 @@ const datas = JSON.parse(
 
 function UserItemScreen({ navigation }) {
     return (
-        <Screen>
+        <RawScreen>
             <FlatList
                 style={{
                     width: "100%",
@@ -27,7 +27,7 @@ function UserItemScreen({ navigation }) {
                     />
                 )}
             />
-        </Screen>
+        </RawScreen>
     );
 }
 

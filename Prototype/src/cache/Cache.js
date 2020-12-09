@@ -156,23 +156,21 @@ export class Jobs {
      *      - start_time, endtime "YYYY MM:DD HH:MM" string
      *      - name, description:
      * @param promise   Callback to handle fetch result
-     * @return {Promise<T | Promise<never>>}
      */
-    static postJob = (job, promise) => {
+    static postJob = (job) => {
         if (
             !job ||
             !job.customer_id ||
             !job.start_time ||
             !job.end_time ||
-            !job.site_id ||
             !job.name ||
             !job.description
         ) {
-            fail(
-                new Error(
-                    "Malformed job post. Job object  with .job.customer_id"
-                )
+            console.log(JSON.stringify(job));
+            console.log(
+                "Malformed job post. Job object  with .job.customer_id"
             );
+            return null;
         }
 
         fetch(endpointJobs, Cache.createPostJSON(job))

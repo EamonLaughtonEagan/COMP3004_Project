@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textTransform: "uppercase",
     },
+    button: {
+        alignSelf: "center"
+    }
 });
 
 export default AppButton;

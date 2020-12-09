@@ -22,16 +22,27 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b983b147-ef33-4d69-9175-007e40080e4d" name="Default Changelist" comment="LoadableComponent.js no longer stores props.navigation unnecessarily">
+    <list default="true" id="b983b147-ef33-4d69-9175-007e40080e4d" name="Default Changelist" comment="DO NOT USE THIS VERSION. It will be fixed soon; I am committing this before updating expo in case of problems.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Prototype/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/cache/Cache.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/cache/Cache.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/AppButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/components/AppScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/AppScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/components/Screen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/components/Screen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/config/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/config/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/job/AddJobButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/CreateJobButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/job/CreateJob.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/CreateJobScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/job/CreateReport.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/CreateReportScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/job/JobItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/JobItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/job/JobListScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/JobListScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Prototype/src/job/JobScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/JobScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/navigation/AccountNavigator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/job/ReportList.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/job/ReportList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Prototype/src/navigation/WelcomeNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/navigation/WelcomeNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prototype/src/navigation/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/navigation/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/screens/AccountScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/screens/AccountScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/screens/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/screens/LoginScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/screens/WelcomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/screens/WelcomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/user/UserItemScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/user/UserItemScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Prototype/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_logs/eamon/eamon.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dev_logs/eamon/eamon.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +156,9 @@
       <workItem from="1607133089289" duration="127000" />
       <workItem from="1607133234980" duration="14587000" />
       <workItem from="1607460457835" duration="19246000" />
-      <workItem from="1607489384844" duration="3150000" />
+      <workItem from="1607489384844" duration="13049000" />
+      <workItem from="1607508157669" duration="15455000" />
+      <workItem from="1607527140383" duration="7470000" />
     </task>
     <task id="LOCAL-00001" summary="Added /Server/ files to .gitignore: &#10;- Server/node_modules, &#10;- Server/.serverless/sml.zip&#10;- Server/.idea">
       <created>1607149431780</created>
@@ -315,7 +328,28 @@
       <option name="project" value="LOCAL" />
       <updated>1607492514939</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Fixed props.params passing. Also removed dummyReports as the API is working fine now.">
+      <created>1607492582646</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1607492582646</updated>
+    </task>
+    <task id="LOCAL-00026" summary="DO NOT USE THIS VERSION. It will be fixed soon; I am committing this before updating expo in case of problems. Details below:&#10;&#10;Overhauled Navigation (WelcomeNavigator.js) with the following:&#10;- Removed MaterialTopBarNavigator for separating JobLists&#10;- Moved (previously: Jobs and Account tabs) to Upcoming Jobs and Old Jobs) on the BOTTOM of the screen because it being at the top is dumb&#10;- Job Creation screen linked with new button on this bottom tab; it will soon not look like garbage&#10;&#10;- Root DrawerNavigator now allows the user to open a sidebar anywhere&#10;- Sidebar allows user to navigate to any listed screen&#10;- All screens will soon have a header with a button for opening the drawer (you can just swipe left-&gt;right for now).&#10;- All screens will soon have titles (just need to define it every time Screen is used)">
+      <created>1607493087577</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1607493087577</updated>
+    </task>
+    <task id="LOCAL-00027" summary="DO NOT USE THIS VERSION. It will be fixed soon; I am committing this before updating expo in case of problems.">
+      <created>1607493119282</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1607493119282</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +368,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added /Server/ files to .gitignore: &#10;- Server/node_modules, &#10;- Server/.serverless/sml.zip&#10;- Server/.idea" />
     <MESSAGE value="Merged Lambda functions to improve connection pooling. Previously, one lambda was used for each route (ie. /users/, /jobs/). Now all requests are handled by the same Lambda on AWS." />
     <MESSAGE value="Removed callback for fetching new users; instead users should be re-cached when new users are created." />
     <MESSAGE value="Removed unused classes" />
@@ -356,13 +389,21 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Removed report status id comments - refer to JobHelper.js for this information." />
     <MESSAGE value="LoadableComponent.js no longer stores props.navigation unnecessarily" />
-    <option name="LAST_COMMIT_MESSAGE" value="LoadableComponent.js no longer stores props.navigation unnecessarily" />
+    <MESSAGE value="Fixed props.params passing. Also removed dummyReports as the API is working fine now." />
+    <MESSAGE value="Added JobListScreen to navigator which includes two views, separating old and new jobs." />
+    <MESSAGE value="DO NOT USE THIS VERSION. It will be fixed soon; I am committing this before updating expo in case of problems. Details below:&#10;&#10;Overhauled Navigation (WelcomeNavigator.js) with the following:&#10;- Removed MaterialTopBarNavigator for separating JobLists&#10;- Moved (previously: Jobs and Account tabs) to Upcoming Jobs and Old Jobs) on the BOTTOM of the screen because it being at the top is dumb&#10;- Job Creation screen linked with new button on this bottom tab; it will soon not look like garbage&#10;&#10;- Root DrawerNavigator now allows the user to open a sidebar anywhere&#10;- Sidebar allows user to navigate to any listed screen&#10;- All screens will soon have a header with a button for opening the drawer (you can just swipe left-&gt;right for now).&#10;- All screens will soon have titles (just need to define it every time Screen is used)" />
+    <MESSAGE value="DO NOT USE THIS VERSION. It will be fixed soon; I am committing this before updating expo in case of problems." />
+    <option name="LAST_COMMIT_MESSAGE" value="DO NOT USE THIS VERSION. It will be fixed soon; I am committing this before updating expo in case of problems." />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" width="816" height="730" key="#Intentions" timestamp="1607137269354">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" width="816" height="730" key="#Intentions/0.0.1920.1040@0.0.1920.1040" timestamp="1607137269354" />
+    <state x="705" y="343" key="#Notifications" timestamp="1607493239499">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="705" y="343" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1607493239499" />
     <state x="440" y="94" key="#Project_Structure" timestamp="1607422022321">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -379,6 +420,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607421390707" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1607495418417">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607495418417" />
     <state x="574" y="340" key="Registry" timestamp="1607422840467">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -391,10 +436,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607403756848" />
-    <state x="667" y="253" width="670" height="534" key="find.popup" timestamp="1607473506413">
+    <state x="667" y="253" width="670" height="534" key="find.popup" timestamp="1607518664376">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="670" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607473506413" />
+    <state x="667" y="253" width="670" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607518664376" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607422819313">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

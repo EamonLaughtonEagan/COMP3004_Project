@@ -6,9 +6,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { Text, View } from "react-native";
 
-import AddJobButton from "../job/AddJobButton";
-import CreateJob from "../job/CreateJob";
-import CreateReport from "../job/CreateReport";
+import common from "../config/common";
+import CreateJobButton from "../job/CreateJobButton";
+import CreateJobScreen from "../job/CreateJobScreen";
+import CreateReportScreen from "../job/CreateReportScreen";
 import { FutureJobList, PastJobList } from "../job/JobListScreen";
 import JobScreen from "../job/JobScreen";
 import AccountScreen from "../screens/AccountScreen";
@@ -18,34 +19,42 @@ import routes from "./routes";
 
 const Stack = createStackNavigator();
 
+// const WelcomeNavigator = () => (
+//     <NavigationContainer>
+//         <Stack.Navigator>
+//             <Stack.Screen
+//                 name={"test"}
+//                 headerType={"pop"}
+//             />
+//         </Stack.Navigator>
+//     </NavigationContainer>
+// );
+
+const DrawerNavigator = () => (
+    <Drawer.Navigator initialRouteName={routes.JOBS}>
+        <Drawer.Screen name={routes.ACCOUNT} component={AccountScreen} />
+        <Drawer.Screen name={routes.JOBS} component={BottomTabNav} />
+    </Drawer.Navigator>
+);
+
 const WelcomeNavigator = () => (
     <NavigationContainer>
-        <Drawer.Navigator
-            initialRouteName={routes.WELCOME}
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false,
+                gestureEnabled: false,
+            }}
         >
-            <Drawer.Screen name={routes.ACCOUNT} component={AccountScreen} />
-            <Drawer.Screen name={routes.JOBS} component={BottomTabNav}/>
-        </Drawer.Navigator>
+            <Stack.Screen name={routes.WELCOME} component={WelcomeScreen} />
+            <Stack.Screen name={routes.LOGIN} component={LoginScreen} />
+            <Stack.Screen name={routes.JOBS} component={DrawerNavigator} />
+        </Stack.Navigator>
     </NavigationContainer>
 );
 
 const Tab = createBottomTabNavigator();
 const JStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-
-const DrawerTest = () => (
-    <View>
-        <Text>fjdkslfjdksljfkdls</Text>
-    </View>
-);
-
-const SideBarScreen = () => (
-    <View>
-        <Text>Side bar item 1</Text>
-        <Text>Side bar item 2</Text>
-        <Text>Side bar item 3</Text>
-    </View>
-);
 
 const FutureJobListNavigator = () => {
     return (
@@ -61,7 +70,7 @@ const FutureJobListNavigator = () => {
             <JStack.Screen name={routes.JOB} component={JobScreen} />
             <JStack.Screen
                 name={routes.CREATE_REPORT}
-                component={CreateReport}
+                component={CreateReportScreen}
             />
         </JStack.Navigator>
     );
@@ -80,7 +89,7 @@ const PastJobListNavigator = () => {
             <JStack.Screen name={routes.JOB} component={JobScreen} />
             <JStack.Screen
                 name={routes.CREATE_REPORT}
-                component={CreateReport}
+                component={CreateReportScreen}
             />
         </JStack.Navigator>
     );
@@ -90,7 +99,7 @@ const BottomTabNav = () => (
     <Tab.Navigator
         tabBarOptions={{
             activeBackgroundColor: "dodgerblue",
-            activeTintColor: "white",
+            activeTintColor: "black",
             inactiveBackgroundColor: "#eee",
             inactiveTintColor: "black",
         }}
@@ -111,10 +120,10 @@ const BottomTabNav = () => (
         />
         <Tab.Screen
             name={routes.CREATE_JOB}
-            component={CreateJob}
+            component={CreateJobScreen}
             options={({ navigation }) => ({
                 tabBarButton: () => (
-                    <AddJobButton
+                    <CreateJobButton
                         onPress={() => navigation.navigate(routes.CREATE_JOB)}
                     />
                 ),

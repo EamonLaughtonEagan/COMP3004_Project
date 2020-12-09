@@ -49,7 +49,11 @@ class JobListScreen extends LoadableComponent {
         }
 
         return (
-            <Screen>
+            <Screen
+                title={"Jobs"}
+                navigation={this.props.navigation}
+                headerType={"drawer"}
+            >
                 <FlatList
                     data={this.jobList}
                     keyExtractor={(d) => d.job.job_id.toString()}
@@ -57,7 +61,7 @@ class JobListScreen extends LoadableComponent {
                         <JobItem
                             jobData={item}
                             onPress={() => {
-                                this.props.navigation.navigate(
+                                this.props.navigation.push(
                                     routes.JOB,
                                     item
                                 );

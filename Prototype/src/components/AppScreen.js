@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { StyleSheet, SafeAreaView, View, ImageBackground } from "react-native";
 
-function Screen({ children, style }) {
+function RawScreen({ children, style }) {
     return (
         <LinearGradient
             colors={["whitesmoke", "floralwhite"]}
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Screen;
+export default RawScreen;

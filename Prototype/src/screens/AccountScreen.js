@@ -1,23 +1,24 @@
 import React from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 
-import Screen from "../components/AppScreen";
+import Screen from "../components/Screen";
 
-function AccountScreen({ route }) {
+function AccountScreen({ route, navigation }) {
     return (
-        <Screen style={styles.logo}>
-            <Text style={styles.accountText}>
-                You are logged in as a technician.
-            </Text>
+        <Screen
+            title="Account"
+            headerType="drawer"
+            style={styles.logo}
+            navigation={navigation}
+        >
+            <Text style={styles.accountText}>You are logged in as ADMIN</Text>
             <View
                 style={{
                     alignItems: "flex-start",
                 }}
             >
-                <Text style={styles.detail}>Name: Stanley Summers</Text>
-                <Text style={styles.detail}>
-                    E-mail: stanley.summers@gmail.com
-                </Text>
+                <Text style={styles.detail}>Name: The Crew</Text>
+                <Text style={styles.detail}>E-mail: hello@thecrew.com</Text>
             </View>
         </Screen>
     );
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     accountText: {
+        paddingTop: 100,
         fontSize: 20,
         fontWeight: "bold",
         alignSelf: "center",

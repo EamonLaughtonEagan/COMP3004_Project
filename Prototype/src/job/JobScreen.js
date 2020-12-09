@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 
-import Screen from "../components/AppScreen";
+import Screen from "../components/Screen";
 import { timeShortRelativeNow } from "./JobHelper";
 import { ReportList } from "./ReportList";
 
@@ -19,14 +19,18 @@ function JobScreen(props) {
     const reports = job.reports;
 
     return (
-        <Screen>
+        <Screen
+            title={job.name}
+            navigation={props.navigation}
+            headerType={"stack"}
+        >
             <View style={styles.container}>
                 {/*Title container*/}
                 <View style={styles.titleContainer}>
                     <View>
-                        <Text style={styles.title} numberOfLines={2}>
-                            {job.name}
-                        </Text>
+                        {/*<Text style={styles.title} numberOfLines={2}>*/}
+                        {/*    {job.name}*/}
+                        {/*</Text>*/}
                         <Text style={styles.soft}>
                             {customer.first_name} {customer.last_name}
                         </Text>
