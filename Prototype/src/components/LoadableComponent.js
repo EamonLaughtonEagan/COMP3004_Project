@@ -6,7 +6,6 @@ import React from "react";
  *      - render() in child component must handle "loaded" and "error" states
  */
 export class LoadableComponent extends React.Component {
-
     // useState can't be used while the component is mounting, so these variables are used instead
     loaded = false;
     error = false;
@@ -35,4 +34,5 @@ export class LoadableComponent extends React.Component {
     async componentDidMount() {
         return this.reload();
     }
+
 }

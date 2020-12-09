@@ -57,7 +57,10 @@ class JobListScreen extends LoadableComponent {
                         <JobItem
                             jobData={item}
                             onPress={() => {
-                                this.navigation.navigate(routes.JOB, item);
+                                this.props.navigation.navigate(
+                                    routes.JOB,
+                                    item
+                                );
                             }}
                         />
                     )}
@@ -77,7 +80,7 @@ export class FutureJobList extends JobListScreen {
             const jobDate = new Date(jobs[i].job.start_time);
             const now = Date.now();
 
-            if (now - jobDate > -common.MILLIS_HOUR) {
+            if (now - jobDate > -common.MILLIS_DAY) {
                 jobs.splice(i, 1);
             }
         }
@@ -93,7 +96,7 @@ export class PastJobList extends JobListScreen {
             const jobDate = new Date(jobs[i].job.start_time);
             const now = Date.now();
 
-            if (jobDate - now > common.MILLIS_HOUR) {
+            if (jobDate - now > common.MILLIS_DAY) {
                 jobs.splice(i, 1);
             }
         }
