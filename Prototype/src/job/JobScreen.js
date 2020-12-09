@@ -11,51 +11,12 @@ import { ReportList } from "./ReportList";
     TODO: Fix this
  */
 
-const dummyReports = [
-    {
-        report_id: 4,
-        user_id: 2,
-        job_id: 1,
-        status_id: 2,
-        text:
-            "This is a dummy report, created in JobScreen.js. This report has a status id of 2, which flags it as a minor problem.",
-    },
-    {
-        report_id: 5,
-        user_id: 2,
-        job_id: 1,
-        status_id: 1,
-        text:
-            "This is a second dummy report. This report's status id is 1, which means OK!",
-    },
-    {
-        report_id: 6,
-        user_id: 2,
-        job_id: 1,
-        status_id: 3,
-        text:
-            "This is a report with a major problem. The icons are rendered with JobHelper.getReportIcon(getWorstReport())",
-    },
-    {
-        report_id: 7,
-        user_id: 2,
-        job_id: 1,
-        status_id: 0,
-        text:
-            "This is a fourth report, with status_id of 0. Status_id of 0 is not defined, but in the JobList screen, jobs " +
-            "WITHOUT reports will have the clock icon. \n" +
-            "I don't expect many jobs to have this many reports, this is just here to make sure really long " +
-            "reports (and a lot of them) still display correctly.",
-    }
-];
-
-function JobScreen({ route }) {
-    const jobData = route.params;
+function JobScreen(props) {
+    const jobData = props.route.params;
     const job = jobData.job;
     const customer = jobData.customer;
     const site = jobData.site;
-    // TODO: Once reports are styled, use this to render reports
-    // const reports = job.reports;
+    const reports = job.reports;
 
     return (
         <Screen>
@@ -87,7 +48,7 @@ function JobScreen({ route }) {
 
                 {/* Footer container */}
 
-                <ReportList reports={job.reports} {...props.navigation} />
+                <ReportList reports={reports} navigation={props.navigation} />
             </View>
         </Screen>
     );
