@@ -9,7 +9,7 @@ import { StyleSheet, Text} from "react-native";
  */
 
 function CreateReport({ jobData, onPress }) {
-    return <Text>Hi</Text>;
+    return <Text>Style create report screen here</Text>;
 }
 
 const styles = StyleSheet.create({});
