@@ -1,3 +1,6 @@
+# TAs: See the Demo branch for the latest code
+
+
 # COMP 3004
 
 **Prototype Setup**
