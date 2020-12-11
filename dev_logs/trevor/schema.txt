@@ -5,7 +5,8 @@ Keep the context of this app in mind; it is meant to be a calendar-esque app mea
 The following possible complications are present and accounted for in the design of the database:
 1. Customers can have multiple addresses. Describing the address of a customer should not be done in the customers table.
 2. Jobs should be able to have multiple reports. Consider a job that goes well, but there is still something that should be brought to the attention of a supervisor. 
-One possible scenario where this becomes relevant to the design of the app: Customer verbally requests something be delivered. The tech now makes two reports; one that describes the outcome of the job, and another that flags the attention of a supervisor to schedule a delivery.
+One possible scenario where this becomes relevant to the design of the app: Customer verbally requests something be delivered. The tech now makes two reports; one
+that describes the outcome of the job, and another that flags the attention of a supervisor to schedule a delivery.
 
 As such, the following tables were used:
 
