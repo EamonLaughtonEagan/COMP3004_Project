@@ -14,7 +14,9 @@ This code is the server-side middleware for our app. It receives HTTP requests f
 
 6. In a callback, the response from the database is sent back to the client.
 
-The root URI of the api is https://bsdbwvwyf7.execute-api.us-east-2.amazonaws.com/dev/
+Try a GET request here: is https://bsdbwvwyf7.execute-api.us-east-2.amazonaws.com/dev/jobs/
+
+The root of the api is the /dev/ route.
 
 API calls are made through standard HTTP get/post/put/delete requests to this URI. Some examples of how to use the API are listed below.
 
