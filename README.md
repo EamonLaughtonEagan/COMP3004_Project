@@ -1,3 +1,7 @@
+### Client-side code is in /Prototype/
+
+### Server-side (backend) code is in /Server/
+
 # COMP 3004
 
 **Prototype Setup**
