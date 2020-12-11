@@ -1,0 +1,100 @@
+The following schemas describe the database used for the API. 
+
+Keep the context of this app in mind; it is meant to be a calendar-esque app meant for sharing jobs between users. 
+
+The following possible complications are present and accounted for in the design of the database:
+1. Customers can have multiple addresses. Describing the address of a customer should not be done in the customers table.
+2. Jobs should be able to have multiple reports. Consider a job that goes well, but there is still something that should be brought to the attention of a supervisor. 
+One possible scenario where this becomes relevant to the design of the app: Customer verbally requests something be delivered. The tech now makes two reports; one that describes the outcome of the job, and another that flags the attention of a supervisor to schedule a delivery.
+
+As such, the following tables were used:
+
+Job related
+- jobs: Store job name, description, start time, end time, site id, and customer id.
+- reports: Stores job it relates to, the user id of creator, time of creation, status_id, and text of report
+- statuses: Stores the name of each status id (OK, Minor problem, or Major problem)
+
+The following tables were created but not used:
+- consumables: Stores possible inventory items used at jobs. Chemicals, equipment installs, etc. can all potentially be recorded. Eventually admins will be able to add to this.
+- consumable_categories: Stores possible categories of consumables (chemical, equipment, electrical, plumbing, etc) for organizing pages in future.
+- levels: Store water chemistry test results. Includes pH, free/total/combined chlorine, alkalinity, hardness, stabilizer, phosphates, iron, and copper readings.
+  The intention was to allow technicians to record and save these levels (or consumables) in their app, on a per-job basis.
+
+Customer-related
+- customers: Store customer contact information, like name, phone, and email
+- sites: Store customer addresses, along with site "type" (pool or hot tub), site volume (in litres - this is especially useful for techs)
+
+App user related
+- users: Store user email, name, and permission group id
+- permission_groups: Permission group name
+
+
+The following schemas describe the database. Note the foreign key constraints used for joining tables.
+
+Job-related
+CREATE TABLE `jobs` (
+  `job_id` int NOT NULL AUTO_INCREMENT,
+  `customer_id` int NOT NULL,
+  `site_id` int NOT NULL,
+  `start_time` datetime DEFAULT NULL,
+  `end_time` datetime DEFAULT NULL,
+  `name` varchar(200) NOT NULL,
+  `description` varchar(400) NOT NULL,
+  PRIMARY KEY (`job_id`),
+  KEY `start_time` (`start_time`),
+  KEY `jobs_ibfk_1` (`customer_id`),
+  KEY `jobs_ibfk_2` (`site_id`),
+  CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
+  CONSTRAINT `jobs_ibfk_2` FOREIGN KEY (`site_id`) REFERENCES `sites` (`site_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `reports` (
+  `report_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `report_time` datetime DEFAULT NULL,
+  `job_id` int NOT NULL,
+  `status_id` int NOT NULL,
+  `text` varchar(400) DEFAULT NULL,
+  PRIMARY KEY (`report_id`),
+  KEY `status_id` (`status_id`),
+  KEY `reports_ibfk_1` (`job_id`),
+  KEY `reports_ibfk_3` (`user_id`),
+  CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `jobs` (`job_id`),
+  CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`status_id`),
+  CONSTRAINT `reports_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `statuses` (
+  `status_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  PRIMARY KEY (`status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+Customer-related
+CREATE TABLE `customers` (
+  `customer_id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(20) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `cell` varchar(20) DEFAULT NULL,
+  `home` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`customer_id`),
+  UNIQUE KEY `email` (`email`),
+  KEY `customer_id` (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `sites` (
+  `site_id` int NOT NULL AUTO_INCREMENT,
+  `customer_id` int NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `volume` int NOT NULL,
+  PRIMARY KEY (`site_id`),
+  KEY `customer_id` (`customer_id`),
+  CONSTRAINT `sites_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+
+
