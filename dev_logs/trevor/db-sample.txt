@@ -1,0 +1,76 @@
+Since the database cannot be viewed on this repository, here is a sample taken from the database.
+
+
+jobs
++--------+-------------+---------+---------------------+---------------------+-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| job_id | customer_id | site_id | start_time          | end_time            | name                          | description                                                                                                                                                                                                                   |
++--------+-------------+---------+---------------------+---------------------+-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|      1 |           1 |       1 | 2020-11-30 02:51:37 | 2020-11-30 04:51:37 | Pool cleaning + deliver order | Clean the pool and deliver the chlorine that Joe ordered                                                                                                                                                                      |
+|      2 |          24 |       2 | 2020-12-04 22:45:12 | 2020-12-05 00:45:12 | Install SuperFlo VS Pump      | Evan needs a new SuperFlo VS installed.\nPack 10ft of red wire, 1 inch conduit, and strain relief.\nAlso bring chlorine, as his pool has turned green.                                                                        |
+|      3 |          25 |       3 | 2020-12-04 22:58:46 | 2020-12-05 00:28:46 | Maintenance visit             | Vacuum the pool, brush the scumline, and skim leaves.\nEmpty the pump and skimmer baskets\nBackwash the sand filter and refill the chlorinator                                                                                  |
+|      4 |          26 |       4 | 2020-12-04 23:08:50 | 2020-12-05 00:38:50 | Plumbing Leak Fix             | Andrew did a bucket test and we know there is a leak in the plumbing somewhere.\nPressure test to find out which line the leak is in, then locate it with the acoustic listening device. Please report job results in the app! |
+|      5 |          27 |       5 | 2020-12-04 23:10:26 | 2020-12-05 00:40:26 | Gold Pool Closing             | Standard gold closing with tarp and water bags.\nCustomer requested a chemical closing kit as well.                                                                                                                            |
++--------+-------------+---------+---------------------+---------------------+-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+reports
++-----------+---------+---------------------+--------+-----------+------------------------------------------------------------------+
+| report_id | user_id | report_time         | job_id | status_id | text                                                             |
++-----------+---------+---------------------+--------+-----------+------------------------------------------------------------------+
+|         3 |       2 | 2020-12-08 00:08:29 |      1 |         1 | No problems with scheduled job                                   |
+|         4 |       2 | 2020-12-07 22:09:43 |      1 |         2 | Customer requested a new jet faceplate be delivered              |
+|         5 |       2 | 2020-12-06 00:09:57 |      4 |         2 | Customer wants 8kg chlorine pucks delivered next trip            |
+|         6 |       2 | 2020-12-07 00:10:06 |      5 |         3 | Customer did not unlock the gate, so we could not close the pool |
+|         7 |       2 | 2020-12-07 21:10:18 |      6 |         1 | Job completed with no problems.                                  |
++-----------+---------+---------------------+--------+-----------+------------------------------------------------------------------+
+
+statuses
++-----------+---------------+
+| status_id | name          |
++-----------+---------------+
+|         1 | ok            |
+|         2 | minor problem |
+|         3 | major problem |
++-----------+---------------+
+
+customers
++-------------+------------+-----------+--------------------------+--------------+--------------+
+| customer_id | first_name | last_name | email                    | cell         | home         |
++-------------+------------+-----------+--------------------------+--------------+--------------+
+|           1 | joe        | blow      | joe.blow@gmail.com       | 555 432-1987 | 555 843-4812 |
+|          24 | Evan       | Edmunds   | eevanedmunds@yahoo.ca    | 555 384-3825 | 555 136-1981 |
+|          25 | Diana      | Simpson   | dianasimps0n@gmail.com   | 555 419-3822 | 555 288-9582 |
+|          26 | Andrew     | Hemmings  | andrew.hemmings@bell.net | NULL         | 555 429-7583 |
+|          27 | Molly      | Edumnds   | medumnd84@gmail.com      | 555 098-1823 | 555 223-1738 |
++-------------+------------+-----------+--------------------------+--------------+--------------+
+
+sites
++---------+-------------+-------------------+---------------+--------+
+| site_id | customer_id | address           | type          | volume |
++---------+-------------+-------------------+---------------+--------+
+|       1 |           1 | 123 Smiley St.    | Inground pool |  50000 |
+|       2 |          24 | 732 Sage Crescent | Inground pool |  65000 |
+|       3 |          25 | 36 Teevens Drive  | Inground pool |  60000 |
+|       4 |          26 | 12 Post Road      | Inground pool |  85000 |
+|       5 |          27 | 7 Macnabb Place   | Inground pool |  75000 |
++---------+-------------+-------------------+---------------+--------+
+
+
+users
++---------+---------------+-------------------+------------+-----------+
+| user_id | permission_id | email             | first_name | last_name |
++---------+---------------+-------------------+------------+-----------+
+|       2 |             4 | trevori           | trevor     | incze     |
+|       3 |             3 | hello@thecrew.com | SML        | Admin     |
+|       4 |             3 | jbat              | jordan     | battram   |
+|       5 |             2 | troy.tech         | troy       | smith     |
++---------+---------------+-------------------+------------+-----------+
+
+permissions
++---------------+-----------------+
+| permission_id | permission_name |
++---------------+-----------------+
+|             1 | guest           |
+|             2 | tech            |
+|             3 | supervisor      |
+|             4 | admin           |
++---------------+-----------------+
